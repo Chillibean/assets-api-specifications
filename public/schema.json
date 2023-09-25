@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.0.0",
+    "version": "1.0.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Example",
-      "description": "Example endpoints"
+      "name": "Assets",
+      "description": "Endpoints for assets"
     }
   ],
   "servers": [
@@ -26,9 +26,9 @@
     }
   ],
   "paths": {
-    "/example": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
-        "summary": "Example endpoint",
+        "summary": "Fetches an asset for a trial container",
         "security": [
           {
             "userSessionKey": []
@@ -37,27 +37,48 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getExample",
-        "description": "This is an example endpoint",
+        "operationId": "getAsset",
+        "description": "Fetches an asset for a trial container",
         "parameters": [
           {
-            "name": "example",
-            "in": "query",
-            "description": "Example parameter",
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
             }
           }
         ],
-        "tags": ["Example"],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExampleResponse"
+                  "$ref": "#/components/schemas/Asset"
                 }
               }
             }
@@ -94,11 +115,52 @@
       }
     },
     "schemas": {
-      "ExampleResponse": {
+      "Asset": {
         "type": "object",
         "properties": {
-          "example": {
-            "type": "string"
+          "id": {
+            "type": "string",
+            "description": "The asset id",
+            "example": "1"
+          },
+          "name": {
+            "type": "string",
+            "description": "The asset name",
+            "example": "Asset 1"
+          },
+          "chapters": {
+            "type": "array",
+            "description": "The asset chapters",
+            "items": {
+              "type": "object",
+              "properties": {
+                "chapter_definition_id": {
+                  "type": "integer",
+                  "description": "The chapter definition id",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The chapter name",
+                  "example": "Chapter 1"
+                },
+                "color": {
+                  "type": "string",
+                  "description": "The chapter color",
+                  "example": "#000000"
+                },
+                "start_time": {
+                  "type": "integer",
+                  "description": "The chapter start time",
+                  "example": 0
+                },
+                "end_time": {
+                  "type": "integer",
+                  "description": "The chapter end time",
+                  "example": 100
+                }
+              }
+            }
           }
         }
       },
