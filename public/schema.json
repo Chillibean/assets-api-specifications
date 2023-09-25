@@ -71,9 +71,77 @@
             }
           }
         ],
-        "tags": [
-          "Assets"
+        "tags": ["Assets"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates an asset for a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
         ],
+        "operationId": "putAsset",
+        "description": "Updates an asset for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
