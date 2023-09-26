@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -71,7 +71,9 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": [
+          "Assets"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -141,7 +143,9 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": [
+          "Assets"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -206,7 +210,11 @@
             }
           }
         },
-        "required": ["id", "name", "chapters"]
+        "required": [
+          "id",
+          "name",
+          "chapters"
+        ]
       },
       "Chapter": {
         "type": "object",
