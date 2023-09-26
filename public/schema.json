@@ -202,37 +202,48 @@
             "type": "array",
             "description": "The asset chapters",
             "items": {
-              "type": "object",
-              "properties": {
-                "chapter_definition_id": {
-                  "type": "integer",
-                  "description": "The chapter definition id",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "description": "The chapter name",
-                  "example": "Chapter 1"
-                },
-                "color": {
-                  "type": "string",
-                  "description": "The chapter color",
-                  "example": "#000000"
-                },
-                "start_time": {
-                  "type": "integer",
-                  "description": "The chapter start time",
-                  "example": 0
-                },
-                "end_time": {
-                  "type": "integer",
-                  "description": "The chapter end time",
-                  "example": 100
-                }
-              }
+              "$ref": "#/components/schemas/Chapter"
             }
           }
-        }
+        },
+        "required": ["id", "name", "chapters"]
+      },
+      "Chapter": {
+        "type": "object",
+        "properties": {
+          "chapter_definition_id": {
+            "type": "integer",
+            "description": "The chapter definition id",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The chapter name",
+            "example": "Chapter 1"
+          },
+          "color": {
+            "type": "string",
+            "description": "The chapter color",
+            "example": "#000000"
+          },
+          "start_time": {
+            "type": "integer",
+            "description": "The chapter start time",
+            "example": 0
+          },
+          "end_time": {
+            "type": "integer",
+            "description": "The chapter end time",
+            "example": 100
+          }
+        },
+        "required": [
+          "chapter_definition_id",
+          "name",
+          "color",
+          "start_time",
+          "end_time"
+        ]
       },
       "Error": {
         "description": "An error",
