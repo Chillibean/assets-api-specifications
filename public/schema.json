@@ -209,36 +209,7 @@
             "example": "2020-01-01T00:00:00.000Z"
           },
           "created_by": {
-            "type": "object",
-            "description": "The asset created by user",
-            "properties": {
-              "id": {
-                "type": "integer",
-                "description": "The user id",
-                "example": 1
-              },
-              "email": {
-                "type": "string",
-                "description": "The users email",
-                "example": "example@email.com"
-              },
-              "uuid": {
-                "type": "string",
-                "description": "The users uuid",
-                "example": "123e4567-e89b-12d3-a456-426614174000"
-              },
-              "first_name": {
-                "type": "string",
-                "description": "The users first name",
-                "example": "John"
-              },
-              "last_name": {
-                "type": "string",
-                "description": "The users last name",
-                "example": "Doe"
-              }
-            },
-            "required": ["id", "email", "uuid", "first_name", "last_name"]
+            "$ref": "#/components/schemas/User"
           },
           "media_type": {
             "type": "string",
@@ -255,110 +226,18 @@
             "description": "The asset media type",
             "properties": {
               "sd_video": {
-                "type": "object",
-                "description": "The sd video transcode",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "The asset sd video url",
-                    "example": "http://path-to-sd-video"
-                  },
-                  "progress": {
-                    "type": "string",
-                    "description": "The asset sd video progress",
-                    "example": "100"
-                  },
-                  "status": {
-                    "type": "string",
-                    "description": "The asset sd video status",
-                    "example": "complete"
-                  },
-                  "frame_rate": {
-                    "type": "string",
-                    "description": "The asset sd video frame rate",
-                    "example": "25"
-                  }
-                }
+                "$ref": "#/components/schemas/Video"
               },
               "hd_video": {
-                "type": "object",
-                "description": "The hd video transcode",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "The asset hd video url",
-                    "example": "http://path-to-hd-video"
-                  },
-                  "progress": {
-                    "type": "string",
-                    "description": "The asset hd video progress",
-                    "example": "100"
-                  },
-                  "status": {
-                    "type": "string",
-                    "description": "The asset hd video status",
-                    "example": "complete"
-                  },
-                  "frame_rate": {
-                    "type": "string",
-                    "description": "The asset hd video frame rate",
-                    "example": "25"
-                  }
-                }
+                "$ref": "#/components/schemas/Video"
               }
             }
           },
           "asset_infos": {
-            "type": "object",
-            "description": "Asset infos fields",
-            "properties": {
-              "Title": {
-                "type": "string",
-                "description": "The asset title",
-                "example": "Asset 1"
-              },
-              "Reviewed": {
-                "type": "string",
-                "description": "The asset reviewed state",
-                "example": "false"
-              },
-              "Created by": {
-                "type": "string",
-                "description": "The asset created by user",
-                "example": "John Doe"
-              },
-              "Date": {
-                "type": "string",
-                "description": "The asset created at date",
-                "example": "September 12th 2023"
-              },
-              "Type of file": {
-                "type": "string",
-                "description": "The asset file type",
-                "example": "video"
-              },
-              "Object": {
-                "type": "string",
-                "description": "The asset object",
-                "example": "{}"
-              }
-            }
+            "$ref": "#/components/schemas/InfoFields"
           },
           "thumbnails": {
-            "type": "object",
-            "description": "The asset thumbnails",
-            "properties": {
-              "small": {
-                "type": "string",
-                "description": "The asset small thumbnail url",
-                "example": "http://path-to-small-thumbnail"
-              },
-              "large": {
-                "type": "string",
-                "description": "The large asset thumbnail url",
-                "example": "http://path-to-large-thumbnail"
-              }
-            }
+            "$ref": "#/components/schemas/Thumbnails"
           },
           "study_procedure_identifier": {
             "type": "string",
@@ -438,6 +317,129 @@
           "start_time",
           "end_time"
         ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The user id",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "description": "The users email",
+            "example": "example@email.com"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The users uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The users first name",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The users last name",
+            "example": "Doe"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
+      },
+      "Video": {
+        "type": "object",
+        "description": "The video transcode",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The asset  video url",
+            "example": "http://path-to-video"
+          },
+          "progress": {
+            "type": "string",
+            "description": "The asset video progress",
+            "example": "100"
+          },
+          "status": {
+            "type": "string",
+            "description": "The asset video status",
+            "example": "complete"
+          },
+          "frame_rate": {
+            "type": "string",
+            "description": "The asset video frame rate",
+            "example": "25"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["url", "progress", "status", "frame_rate"]
+      },
+      "InfoFields": {
+        "type": "object",
+        "description": "Asset infos fields",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "description": "The asset title",
+            "example": "Asset 1"
+          },
+          "Reviewed": {
+            "type": "string",
+            "description": "The asset reviewed state",
+            "example": "false"
+          },
+          "Created by": {
+            "type": "string",
+            "description": "The asset created by user",
+            "example": "John Doe"
+          },
+          "Date": {
+            "type": "string",
+            "description": "The asset created at date",
+            "example": "September 12th 2023"
+          },
+          "Type of file": {
+            "type": "string",
+            "description": "The asset file type",
+            "example": "video"
+          },
+          "Object": {
+            "type": "string",
+            "description": "The asset object",
+            "example": "{}"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "Title",
+          "Reviewed",
+          "Created by",
+          "Date",
+          "Type of file",
+          "Object"
+        ]
+      },
+      "Thumbnails": {
+        "type": "object",
+        "description": "Asset thumbnails",
+        "properties": {
+          "small": {
+            "type": "string",
+            "description": "The asset small thumbnail url",
+            "example": "http://path-to-small-thumbnail"
+          },
+          "large": {
+            "type": "string",
+            "description": "The large asset thumbnail url",
+            "example": "http://path-to-large-thumbnail"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
