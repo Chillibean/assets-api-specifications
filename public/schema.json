@@ -231,7 +231,9 @@
               "hd_video": {
                 "$ref": "#/components/schemas/Video"
               }
-            }
+            },
+            "additionalProperties": false,
+            "required": ["sd_video", "hd_video"]
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
