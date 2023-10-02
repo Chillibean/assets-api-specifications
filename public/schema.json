@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -71,9 +71,7 @@
             }
           }
         ],
-        "tags": [
-          "Assets"
-        ],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
@@ -143,9 +141,7 @@
             }
           }
         ],
-        "tags": [
-          "Assets"
-        ],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
@@ -193,14 +189,72 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string",
+            "type": "integer",
             "description": "The asset id",
-            "example": "1"
+            "example": 1
           },
-          "name": {
+          "title": {
             "type": "string",
-            "description": "The asset name",
+            "description": "The asset title",
             "example": "Asset 1"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The asset filename",
+            "example": "asset_1.mp4"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset created at date",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "created_by": {
+            "$ref": "#/components/schemas/User"
+          },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
+          "document_type": {
+            "type": "string",
+            "description": "The asset document type",
+            "example": "pdf"
+          },
+          "media": {
+            "type": "object",
+            "description": "The asset media type",
+            "properties": {
+              "sd_video": {
+                "$ref": "#/components/schemas/Video"
+              },
+              "hd_video": {
+                "$ref": "#/components/schemas/Video"
+              }
+            },
+            "additionalProperties": false,
+            "required": ["sd_video", "hd_video"]
+          },
+          "asset_infos": {
+            "$ref": "#/components/schemas/InfoFields"
+          },
+          "thumbnails": {
+            "$ref": "#/components/schemas/Thumbnails"
+          },
+          "study_procedure_identifier": {
+            "type": "string",
+            "description": "The asset study procedure identifier",
+            "example": "PROCEDURE"
+          },
+          "study_event_identifier": {
+            "type": "string",
+            "description": "The asset study event identifier",
+            "example": "EVENT"
+          },
+          "subject_number": {
+            "type": "string",
+            "description": "The asset subject number",
+            "example": "123"
           },
           "chapters": {
             "type": "array",
@@ -210,10 +264,22 @@
             }
           }
         },
+        "additionalProperties": false,
         "required": [
           "id",
-          "name",
-          "chapters"
+          "title",
+          "filename",
+          "chapters",
+          "created_at",
+          "created_by",
+          "media_type",
+          "document_type",
+          "media",
+          "asset_infos",
+          "thumbnails",
+          "study_procedure_identifier",
+          "study_event_identifier",
+          "subject_number"
         ]
       },
       "Chapter": {
@@ -245,6 +311,7 @@
             "example": 100
           }
         },
+        "additionalProperties": false,
         "required": [
           "chapter_definition_id",
           "name",
@@ -252,6 +319,129 @@
           "start_time",
           "end_time"
         ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The user id",
+            "example": 1
+          },
+          "email": {
+            "type": "string",
+            "description": "The users email",
+            "example": "example@email.com"
+          },
+          "uuid": {
+            "type": "string",
+            "description": "The users uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "first_name": {
+            "type": "string",
+            "description": "The users first name",
+            "example": "John"
+          },
+          "last_name": {
+            "type": "string",
+            "description": "The users last name",
+            "example": "Doe"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
+      },
+      "Video": {
+        "type": "object",
+        "description": "The video transcode",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The asset  video url",
+            "example": "http://path-to-video"
+          },
+          "progress": {
+            "type": "string",
+            "description": "The asset video progress",
+            "example": "100"
+          },
+          "status": {
+            "type": "string",
+            "description": "The asset video status",
+            "example": "complete"
+          },
+          "frame_rate": {
+            "type": "string",
+            "description": "The asset video frame rate",
+            "example": "25"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["url", "progress", "status", "frame_rate"]
+      },
+      "InfoFields": {
+        "type": "object",
+        "description": "Asset infos fields",
+        "properties": {
+          "Title": {
+            "type": "string",
+            "description": "The asset title",
+            "example": "Asset 1"
+          },
+          "Reviewed": {
+            "type": "string",
+            "description": "The asset reviewed state",
+            "example": "false"
+          },
+          "Created by": {
+            "type": "string",
+            "description": "The asset created by user",
+            "example": "John Doe"
+          },
+          "Date": {
+            "type": "string",
+            "description": "The asset created at date",
+            "example": "September 12th 2023"
+          },
+          "Type of file": {
+            "type": "string",
+            "description": "The asset file type",
+            "example": "video"
+          },
+          "Object": {
+            "type": "string",
+            "description": "The asset object",
+            "example": "{}"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "Title",
+          "Reviewed",
+          "Created by",
+          "Date",
+          "Type of file",
+          "Object"
+        ]
+      },
+      "Thumbnails": {
+        "type": "object",
+        "description": "Asset thumbnails",
+        "properties": {
+          "small": {
+            "type": "string",
+            "description": "The asset small thumbnail url",
+            "example": "http://path-to-small-thumbnail"
+          },
+          "large": {
+            "type": "string",
+            "description": "The large asset thumbnail url",
+            "example": "http://path-to-large-thumbnail"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
