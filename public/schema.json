@@ -71,9 +71,7 @@
             }
           }
         ],
-        "tags": [
-          "Assets"
-        ],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
@@ -143,9 +141,120 @@
             }
           }
         ],
-        "tags": [
-          "Assets"
+        "tags": ["Assets"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets": {
+      "get": {
+        "summary": "Fetches assets for a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
         ],
+        "operationId": "getAssets",
+        "description": "The assets for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Assets"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Assets"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an asset for a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "postAsset",
+        "description": "Creates an asset for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Assets"],
         "responses": {
           "200": {
             "description": "OK",
@@ -189,6 +298,12 @@
       }
     },
     "schemas": {
+      "Assets": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Asset"
+        }
+      },
       "Asset": {
         "type": "object",
         "properties": {
@@ -220,11 +335,6 @@
             "description": "The asset media type",
             "example": "video"
           },
-          "document_type": {
-            "type": "string",
-            "description": "The asset document type",
-            "example": "pdf"
-          },
           "media": {
             "type": "object",
             "description": "The asset media type",
@@ -237,10 +347,7 @@
               }
             },
             "additionalProperties": false,
-            "required": [
-              "sd_video",
-              "hd_video"
-            ]
+            "required": ["sd_video", "hd_video"]
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
@@ -357,13 +464,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -391,12 +492,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -459,10 +555,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
