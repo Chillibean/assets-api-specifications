@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.5",
+    "version": "1.1.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -71,7 +71,9 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": [
+          "Assets"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -141,7 +143,9 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": [
+          "Assets"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -233,7 +237,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["sd_video", "hd_video"]
+            "required": [
+              "sd_video",
+              "hd_video"
+            ]
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
@@ -350,7 +357,13 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "email", "uuid", "first_name", "last_name"]
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
       },
       "Video": {
         "type": "object",
@@ -378,7 +391,12 @@
           }
         },
         "additionalProperties": false,
-        "required": ["url", "progress", "status", "frame_rate"]
+        "required": [
+          "url",
+          "progress",
+          "status",
+          "frame_rate"
+        ]
       },
       "InfoFields": {
         "type": "object",
@@ -441,7 +459,10 @@
           }
         },
         "additionalProperties": false,
-        "required": ["small", "large"]
+        "required": [
+          "small",
+          "large"
+        ]
       },
       "Error": {
         "description": "An error",
