@@ -171,6 +171,290 @@
           }
         }
       }
+    },
+    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
+      "get": {
+        "summary": "Fetches assets for a study procedure",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getStudyProcedureAssets",
+        "description": "Fetches assets for a study procedure",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          }
+        ],
+        "tags": ["Study Procedures"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Assets"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an asset for a study procedure",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "postStudyProcedureAsset",
+        "description": "Creates an asset for a study procedure",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          }
+        ],
+        "tags": ["Study Procedures"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
+      "put": {
+        "summary": "Updates an asset for a study procedure",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "putStudyProcedureAsset",
+        "description": "Updates an asset for a study procedure",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Study Procedures"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
     }
   },
   "components": {
