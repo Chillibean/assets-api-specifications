@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.5",
+    "version": "1.1.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -167,6 +167,119 @@
           }
         }
       }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets": {
+      "get": {
+        "summary": "Fetches assets for a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getAssets",
+        "description": "The assets for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Assets"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Assets"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an asset for a trial container",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "postAsset",
+        "description": "Creates an asset for a trial container",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Assets"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -185,6 +298,12 @@
       }
     },
     "schemas": {
+      "Assets": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Asset"
+        }
+      },
       "Asset": {
         "type": "object",
         "properties": {
@@ -215,11 +334,6 @@
             "type": "string",
             "description": "The asset media type",
             "example": "video"
-          },
-          "document_type": {
-            "type": "string",
-            "description": "The asset document type",
-            "example": "pdf"
           },
           "media": {
             "type": "object",
