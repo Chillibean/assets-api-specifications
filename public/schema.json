@@ -113,6 +113,29 @@
         ],
         "operationId": "putAsset",
         "description": "Updates an asset for a trial container",
+        "requestBody": {
+          "description": "Asset update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["authenticity_token"]
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account_id",
@@ -143,24 +166,6 @@
               "type": "string",
               "example": "1"
             }
-          },
-          {
-            "name": "chapters",
-            "in": "query",
-            "description": "The asset chapters",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/Chapters"
-            },
-            "example": [
-              {
-                "chapter_definition_id": 1,
-                "name": "Chapter 1",
-                "color": "#000000",
-                "start_time": 0,
-                "end_time": 100
-              }
-            ]
           }
         ],
         "tags": ["Trial Containers"],
@@ -190,7 +195,7 @@
         }
       }
     },
-    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "get": {
         "summary": "Fetches assets for a study procedure",
         "security": [
@@ -293,6 +298,44 @@
         ],
         "operationId": "postStudyProcedureAsset",
         "description": "Creates an asset for a study procedure",
+        "requestBody": {
+          "description": "Asset creation parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "description": "The asset filename",
+                    "example": "sample-vid.mp4"
+                  },
+                  "filesize": {
+                    "type": "integer",
+                    "description": "The asset filesize",
+                    "example": 37512140
+                  },
+                  "mime_type": {
+                    "type": "string",
+                    "description": "The asset mime type",
+                    "example": "video/mp4"
+                  },
+                  "s3_name": {
+                    "type": "string",
+                    "description": "The asset s3 name",
+                    "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  }
+                }
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account_id",
@@ -343,56 +386,6 @@
               "type": "string",
               "example": "STUDY_PROCEDURE_ID"
             }
-          },
-          {
-            "name": "filename",
-            "in": "query",
-            "description": "The asset filename",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "sample-vid.mp4"
-            }
-          },
-          {
-            "name": "filesize",
-            "in": "query",
-            "description": "The asset filesize",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "example": 37512140
-            }
-          },
-          {
-            "name": "mime_type",
-            "in": "query",
-            "description": "The asset mime type",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "video/mp4"
-            }
-          },
-          {
-            "name": "s3_name",
-            "in": "query",
-            "description": "The asset s3 name",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
-            }
-          },
-          {
-            "name": "authenticity_token",
-            "in": "query",
-            "description": "The asset authenticity token",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
-            }
           }
         ],
         "tags": ["Study Procedures"],
@@ -432,7 +425,7 @@
         }
       }
     },
-    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
       "put": {
         "summary": "Updates an asset for a study procedure",
         "security": [
@@ -445,6 +438,29 @@
         ],
         "operationId": "putStudyProcedureAsset",
         "description": "Updates an asset for a study procedure",
+        "requestBody": {
+          "description": "Asset update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["authenticity_token"]
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account_id",
@@ -504,34 +520,6 @@
             "schema": {
               "type": "string",
               "example": "1"
-            }
-          },
-          {
-            "name": "chapters",
-            "in": "query",
-            "description": "The asset chapters",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/Chapters"
-            },
-            "example": [
-              {
-                "chapter_definition_id": 1,
-                "name": "Chapter 1",
-                "color": "#000000",
-                "start_time": 0,
-                "end_time": 100
-              }
-            ]
-          },
-          {
-            "name": "authenticity_token",
-            "in": "query",
-            "description": "The asset authenticity token",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
             }
           }
         ],
