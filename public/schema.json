@@ -143,6 +143,24 @@
               "type": "string",
               "example": "1"
             }
+          },
+          {
+            "name": "chapters",
+            "in": "query",
+            "description": "The asset chapters",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Chapters"
+            },
+            "example": [
+              {
+                "chapter_definition_id": 1,
+                "name": "Chapter 1",
+                "color": "#000000",
+                "start_time": 0,
+                "end_time": 100
+              }
+            ]
           }
         ],
         "tags": ["Trial Containers"],
@@ -394,10 +412,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
                 }
               }
             }
@@ -490,6 +505,34 @@
               "type": "string",
               "example": "1"
             }
+          },
+          {
+            "name": "chapters",
+            "in": "query",
+            "description": "The asset chapters",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Chapters"
+            },
+            "example": [
+              {
+                "chapter_definition_id": 1,
+                "name": "Chapter 1",
+                "color": "#000000",
+                "start_time": 0,
+                "end_time": 100
+              }
+            ]
+          },
+          {
+            "name": "authenticity_token",
+            "in": "query",
+            "description": "The asset authenticity token",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+            }
           }
         ],
         "tags": ["Study Procedures"],
@@ -499,7 +542,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Asset"
+                  "type": "object",
+                  "properties": {
+                    "asset": {
+                      "$ref": "#/components/schemas/Asset"
+                    },
+                    "updates": {
+                      "$ref": "#/components/schemas/AssetUpdates"
+                    }
+                  }
                 }
               }
             }
@@ -609,11 +660,7 @@
             "example": "123"
           },
           "chapters": {
-            "type": "array",
-            "description": "The asset chapters",
-            "items": {
-              "$ref": "#/components/schemas/Chapter"
-            }
+            "$ref": "#/components/schemas/Chapters"
           }
         },
         "additionalProperties": false,
@@ -701,6 +748,12 @@
           "update_message",
           "update_items"
         ]
+      },
+      "Chapters": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Chapter"
+        }
       },
       "Chapter": {
         "type": "object",
