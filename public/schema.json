@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -11,8 +11,12 @@
   },
   "tags": [
     {
-      "name": "Assets",
-      "description": "Endpoints for assets"
+      "name": "Study Procedures",
+      "description": "Endpoints for study procedures"
+    },
+    {
+      "name": "Trial Containers",
+      "description": "Endpoints for trial containers"
     }
   ],
   "servers": [
@@ -71,7 +75,7 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -109,6 +113,29 @@
         ],
         "operationId": "putAsset",
         "description": "Updates an asset for a trial container",
+        "requestBody": {
+          "description": "Asset update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["authenticity_token"]
+              }
+            }
+          }
+        },
         "parameters": [
           {
             "name": "account_id",
@@ -141,7 +168,7 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -168,9 +195,9 @@
         }
       }
     },
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets": {
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "get": {
-        "summary": "Fetches assets for a trial container",
+        "summary": "Fetches assets for a study procedure",
         "security": [
           {
             "userSessionKey": []
@@ -179,8 +206,8 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getAssets",
-        "description": "The assets for a trial container",
+        "operationId": "getStudyProcedureAssets",
+        "description": "Fetches assets for a study procedure",
         "parameters": [
           {
             "name": "account_id",
@@ -193,45 +220,122 @@
             }
           },
           {
-            "name": "trial_container_id",
+            "name": "site_id",
             "in": "path",
-            "description": "The trial container id",
+            "description": "The site id",
             "required": true,
             "schema": {
               "type": "string",
               "example": "1"
             }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
           }
         ],
-        "tags": ["Assets"],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Assets"
+                  "$ref": "#/components/schemas/Assets"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates an asset for a study procedure",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "postStudyProcedureAsset",
+        "description": "Creates an asset for a study procedure",
+        "requestBody": {
+          "description": "Asset creation parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "description": "The asset filename",
+                    "example": "sample-vid.mp4"
+                  },
+                  "filesize": {
+                    "type": "integer",
+                    "description": "The asset filesize",
+                    "example": 37512140
+                  },
+                  "mime_type": {
+                    "type": "string",
+                    "description": "The asset mime type",
+                    "example": "video/mp4"
+                  },
+                  "s3_name": {
+                    "type": "string",
+                    "description": "The asset s3 name",
+                    "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
                   }
                 }
               }
             }
           }
-        }
-      },
-      "post": {
-        "summary": "Creates an asset for a trial container",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "operationId": "postAsset",
-        "description": "Creates an asset for a trial container",
+        },
         "parameters": [
           {
             "name": "account_id",
@@ -244,9 +348,174 @@
             }
           },
           {
-            "name": "trial_container_id",
+            "name": "site_id",
             "in": "path",
-            "description": "The trial container id",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          }
+        ],
+        "tags": ["Study Procedures"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "asset": {
+                      "$ref": "#/components/schemas/Asset"
+                    },
+                    "updates": {
+                      "$ref": "#/components/schemas/AssetUpdates"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": ["asset", "updates"]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
+      "put": {
+        "summary": "Updates an asset for a study procedure",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "putStudyProcedureAsset",
+        "description": "Updates an asset for a study procedure",
+        "requestBody": {
+          "description": "Asset update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
+                  },
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["authenticity_token"]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The asset id",
             "required": true,
             "schema": {
               "type": "string",
@@ -254,14 +523,22 @@
             }
           }
         ],
-        "tags": ["Assets"],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Asset"
+                  "type": "object",
+                  "properties": {
+                    "asset": {
+                      "$ref": "#/components/schemas/Asset"
+                    },
+                    "updates": {
+                      "$ref": "#/components/schemas/AssetUpdates"
+                    }
+                  }
                 }
               }
             }
@@ -371,11 +648,7 @@
             "example": "123"
           },
           "chapters": {
-            "type": "array",
-            "description": "The asset chapters",
-            "items": {
-              "$ref": "#/components/schemas/Chapter"
-            }
+            "$ref": "#/components/schemas/Chapters"
           }
         },
         "additionalProperties": false,
@@ -395,6 +668,80 @@
           "study_event_identifier",
           "subject_number"
         ]
+      },
+      "AssetUpdates": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AssetUpdate"
+        }
+      },
+      "AssetUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The asset update id",
+            "example": "c40a88fc-189e-4bbf-8606-9c7b57030e21"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset update created at date",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "reason_for_change": {
+            "type": "string",
+            "description": "The asset update reason for change",
+            "example": "Reason for change"
+          },
+          "action": {
+            "type": "string",
+            "description": "The asset update action",
+            "example": "uploaded_asset"
+          },
+          "action_text": {
+            "type": "string",
+            "description": "The asset update action text",
+            "example": "uploaded an asset"
+          },
+          "update_type": {
+            "type": "string",
+            "description": "The asset update type",
+            "example": "system_event"
+          },
+          "update_message": {
+            "type": "string",
+            "description": "The asset update message",
+            "example": "Message"
+          },
+          "update_items": {
+            "type": "array",
+            "description": "The asset update items",
+            "items": {
+              "$ref": "#/components/schemas/AssetUpdates"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "created_at",
+          "user",
+          "reason_for_change",
+          "action",
+          "action_text",
+          "update_type",
+          "update_message",
+          "update_items"
+        ]
+      },
+      "Chapters": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Chapter"
+        }
       },
       "Chapter": {
         "type": "object",
