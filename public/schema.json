@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.2.0",
+    "version": "1.2.1",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -75,7 +75,9 @@
             }
           }
         ],
-        "tags": ["Trial Containers"],
+        "tags": [
+          "Trial Containers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -131,7 +133,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["authenticity_token"]
+                "required": [
+                  "authenticity_token"
+                ]
               }
             }
           }
@@ -168,7 +172,9 @@
             }
           }
         ],
-        "tags": ["Trial Containers"],
+        "tags": [
+          "Trial Containers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -260,7 +266,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -388,7 +396,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -405,7 +415,10 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": ["asset", "updates"]
+                  "required": [
+                    "asset",
+                    "updates"
+                  ]
                 }
               }
             }
@@ -456,7 +469,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["authenticity_token"]
+                "required": [
+                  "authenticity_token"
+                ]
               }
             }
           }
@@ -523,7 +538,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -624,7 +641,10 @@
               }
             },
             "additionalProperties": false,
-            "required": ["sd_video", "hd_video"]
+            "required": [
+              "sd_video",
+              "hd_video"
+            ]
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
@@ -811,7 +831,13 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "email", "uuid", "first_name", "last_name"]
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
       },
       "Video": {
         "type": "object",
@@ -839,7 +865,12 @@
           }
         },
         "additionalProperties": false,
-        "required": ["url", "progress", "status", "frame_rate"]
+        "required": [
+          "url",
+          "progress",
+          "status",
+          "frame_rate"
+        ]
       },
       "InfoFields": {
         "type": "object",
@@ -902,7 +933,10 @@
           }
         },
         "additionalProperties": false,
-        "required": ["small", "large"]
+        "required": [
+          "small",
+          "large"
+        ]
       },
       "Error": {
         "description": "An error",
