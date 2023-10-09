@@ -11,6 +11,10 @@
   },
   "tags": [
     {
+      "name": "Account",
+      "description": "Endpoints for accounts"
+    },
+    {
       "name": "Study Procedures",
       "description": "Endpoints for study procedures"
     },
@@ -75,9 +79,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -133,9 +135,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -172,9 +172,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -266,9 +264,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -396,9 +392,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -415,10 +409,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
                 }
               }
             }
@@ -469,9 +460,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -538,9 +527,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -555,6 +542,61 @@
                     "updates": {
                       "$ref": "#/components/schemas/AssetUpdates"
                     }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/chapter_definitions": {
+      "get": {
+        "summary": "Fetches chapter definitions for an account",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getChapterDefinitions",
+        "description": "Fetches chapter definitions for an account",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Account"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ChapterDefinitions"
                   }
                 }
               }
@@ -641,10 +683,7 @@
               }
             },
             "additionalProperties": false,
-            "required": [
-              "sd_video",
-              "hd_video"
-            ]
+            "required": ["sd_video", "hd_video"]
           },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
@@ -757,6 +796,34 @@
           "update_items"
         ]
       },
+      "ChapterDefinitions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ChapterDefinition"
+        }
+      },
+      "ChapterDefinition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The chapter definition id",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The chapter definition name",
+            "example": "Chapter 1"
+          },
+          "color": {
+            "type": "string",
+            "description": "The chapter definition color",
+            "example": "#000000"
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "name", "color"]
+      },
       "Chapters": {
         "type": "array",
         "items": {
@@ -831,13 +898,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -865,12 +926,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -933,10 +989,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
