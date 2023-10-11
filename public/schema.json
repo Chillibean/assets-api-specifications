@@ -25,16 +25,16 @@
   ],
   "servers": [
     {
-      "url": "http://chillipharm.test:3000",
+      "url": "http://chillipharm.test:3000/api/v1",
       "description": "Local development"
     },
     {
-      "url": "https://www.chillipharm.com",
+      "url": "https://www.chillipharm.com/api/v1",
       "description": "Production"
     }
   ],
   "paths": {
-    "/api/v1/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
         "summary": "Fetches an asset for a trial container",
         "security": [
@@ -205,7 +205,7 @@
         }
       }
     },
-    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "get": {
         "summary": "Fetches assets for a study procedure",
         "security": [
@@ -442,7 +442,7 @@
         }
       }
     },
-    "/api/v1/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
       "put": {
         "summary": "Updates an asset for a study procedure",
         "security": [
@@ -699,7 +699,6 @@
           "id",
           "title",
           "filename",
-          "chapters",
           "created_at",
           "created_by",
           "media_type",
