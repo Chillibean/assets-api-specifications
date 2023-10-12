@@ -79,9 +79,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -137,9 +135,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -176,9 +172,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -270,9 +264,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -400,9 +392,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -419,10 +409,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
                 }
               }
             }
@@ -473,9 +460,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -542,9 +527,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -646,9 +629,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -662,10 +643,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -758,7 +736,7 @@
             "type": "array",
             "description": "The asset update items",
             "items": {
-              "$ref": "#/components/schemas/AssetUpdates"
+              "$ref": "#/components/schemas/AssetUpdateItem"
             }
           }
         },
@@ -774,6 +752,36 @@
           "update_message",
           "update_items"
         ]
+      },
+      "AssetUpdateItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The asset update item id",
+            "example": "c40a88fc-189e-4bbf-8606-9c7b57030e21"
+          },
+          "item_type": {
+            "type": "string",
+            "description": "The asset update item type",
+            "example": "Asset"
+          },
+          "item_class": {
+            "type": "string",
+            "description": "The asset update item class",
+            "example": "Asset"
+          },
+          "display_text": {
+            "type": "string",
+            "description": "The asset update item display text",
+            "example": "Asset 1"
+          },
+          "display_date": {
+            "type": "string",
+            "description": "The asset update item display date",
+            "example": "2020-01-01T00:00:00.000Z"
+          }
+        }
       },
       "Chapters": {
         "type": "array",
@@ -849,13 +857,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -884,12 +886,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -907,10 +904,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -930,10 +924,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
