@@ -578,63 +578,6 @@
           }
         }
       }
-    },
-    "/accounts/{account_id}/chapter_definitions": {
-      "get": {
-        "summary": "Fetches chapter definitions for an account",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "operationId": "getChapterDefinitions",
-        "description": "Fetches chapter definitions for an account",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "tags": [
-          "Account"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ChapterDefinitions"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -691,20 +634,39 @@
             "example": "video"
           },
           "media": {
-            "type": "object",
-            "description": "The asset media type",
-            "properties": {
-              "sd_video": {
-                "$ref": "#/components/schemas/Video"
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The asset media url",
+                    "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "url"
+                ]
               },
-              "hd_video": {
-                "$ref": "#/components/schemas/Video"
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "sd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  },
+                  "hd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "sd_video",
+                  "hd_video"
+                ]
               }
-            },
-            "additionalProperties": false,
-            "required": [
-              "sd_video",
-              "hd_video"
             ]
           },
           "asset_infos": {
@@ -737,17 +699,12 @@
           "id",
           "title",
           "filename",
-          "chapters",
           "created_at",
           "created_by",
           "media_type",
-          "document_type",
           "media",
           "asset_infos",
-          "thumbnails",
-          "study_procedure_identifier",
-          "study_event_identifier",
-          "subject_number"
+          "thumbnails"
         ]
       },
       "AssetUpdates": {
@@ -816,38 +773,6 @@
           "update_type",
           "update_message",
           "update_items"
-        ]
-      },
-      "ChapterDefinitions": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ChapterDefinition"
-        }
-      },
-      "ChapterDefinition": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The chapter definition id",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "description": "The chapter definition name",
-            "example": "Chapter 1"
-          },
-          "color": {
-            "type": "string",
-            "description": "The chapter definition color",
-            "example": "#000000"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color"
         ]
       },
       "Chapters": {
@@ -938,6 +863,7 @@
         "properties": {
           "url": {
             "type": "string",
+            "nullable": true,
             "description": "The asset  video url",
             "example": "http://path-to-video"
           },
@@ -978,36 +904,12 @@
             "type": "string",
             "description": "The asset reviewed state",
             "example": "false"
-          },
-          "Created by": {
-            "type": "string",
-            "description": "The asset created by user",
-            "example": "John Doe"
-          },
-          "Date": {
-            "type": "string",
-            "description": "The asset created at date",
-            "example": "September 12th 2023"
-          },
-          "Type of file": {
-            "type": "string",
-            "description": "The asset file type",
-            "example": "video"
-          },
-          "Object": {
-            "type": "string",
-            "description": "The asset object",
-            "example": "{}"
           }
         },
-        "additionalProperties": false,
+        "additionalProperties": true,
         "required": [
           "Title",
-          "Reviewed",
-          "Created by",
-          "Date",
-          "Type of file",
-          "Object"
+          "Reviewed"
         ]
       },
       "Thumbnails": {
@@ -1016,11 +918,13 @@
         "properties": {
           "small": {
             "type": "string",
+            "nullable": true,
             "description": "The asset small thumbnail url",
             "example": "http://path-to-small-thumbnail"
           },
           "large": {
             "type": "string",
+            "nullable": true,
             "description": "The large asset thumbnail url",
             "example": "http://path-to-large-thumbnail"
           }
