@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.4.18",
+    "version": "1.4.19",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
