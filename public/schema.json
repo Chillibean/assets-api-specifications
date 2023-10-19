@@ -79,9 +79,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -97,7 +95,10 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -137,9 +138,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -176,9 +175,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -194,7 +191,10 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -270,9 +270,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -288,7 +286,10 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -400,9 +401,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -419,10 +418,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
                 }
               }
             }
@@ -431,7 +427,10 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -473,9 +472,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -542,9 +539,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -568,7 +563,10 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -646,9 +644,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -662,10 +658,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -879,13 +872,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -914,12 +901,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -937,10 +919,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -960,21 +939,20 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
         "type": "object",
         "properties": {
-          "message": {
+          "error": {
             "type": "string",
             "description": "The error message",
             "example": "Bad request. Missing or invalid input parameters."
           }
-        }
+        },
+        "additionalProperties": false,
+        "required": ["error"]
       }
     },
     "responses": {
@@ -988,12 +966,42 @@
           }
         }
       },
-      "Unauthorized": {
-        "description": "Unauthorized. Missing or invalid authentication credentials.",
+      "NotFound": {
+        "description": "Not found. The requested resource was not found.",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Not found",
+                  "enum": ["Not found"]
+                }
+              },
+              "additionalProperties": false,
+              "required": ["error"]
+            }
+          }
+        }
+      },
+      "Unauthorised": {
+        "description": "Unauthorised. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Unauthorised",
+                  "enum": ["Unauthorised"]
+                }
+              },
+              "additionalProperties": false,
+              "required": ["error"]
             }
           }
         }
