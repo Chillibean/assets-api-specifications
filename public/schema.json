@@ -835,7 +835,6 @@
         },
         "additionalProperties": false,
         "required": [
-          "chapter_definition_id",
           "name",
           "color",
           "start_time",
