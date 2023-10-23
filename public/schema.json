@@ -810,7 +810,8 @@
           "chapter_definition_id": {
             "type": "integer",
             "description": "The chapter definition id",
-            "example": 1
+            "example": 1,
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -833,12 +834,8 @@
             "example": 100
           }
         },
-        "required": [
-          "name",
-          "color",
-          "start_time",
-          "end_time"
-        ]
+        "additionalProperties": false,
+        "required": ["name", "color", "start_time", "end_time"]
       },
       "User": {
         "type": "object",
