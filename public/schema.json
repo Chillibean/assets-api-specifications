@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Account",
-      "description": "Endpoints for accounts"
+      "name": "Chapter Definitions",
+      "description": "Endpoints for chapter definitions"
     },
     {
       "name": "Study Procedures",
@@ -34,6 +34,64 @@
     }
   ],
   "paths": {
+    "/accounts/{account_id}/chapter_definitions": {
+      "get": {
+        "summary": "Fetches chapter definitions for an account",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getAccountChapterDefinitions",
+        "description": "Fetches chapter definitions for an account",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Chapter Definitions"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChapterDefinitions"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
         "summary": "Fetches an asset for a trial container",
@@ -819,6 +877,12 @@
           "$ref": "#/components/schemas/Chapter"
         }
       },
+      "ChapterDefinitions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ChapterDefinition"
+        }
+      },
       "Chapter": {
         "type": "object",
         "properties": {
@@ -851,6 +915,34 @@
         },
         "additionalProperties": false,
         "required": ["name", "color", "start_time", "end_time"]
+      },
+      "ChapterDefinition": {
+        "description": "A chapter definition",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The id of chapter definition",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of chapter definition",
+            "example": "pre"
+          },
+          "color": {
+            "type": "string",
+            "description": "The color of chapter definition",
+            "example": "#ccc"
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of chapter definition",
+            "example": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "name", "color"]
       },
       "User": {
         "type": "object",
