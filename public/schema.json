@@ -97,6 +97,9 @@
           "401": {
             "$ref": "#/components/responses/Unauthorised"
           },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
@@ -193,6 +196,9 @@
           "401": {
             "$ref": "#/components/responses/Unauthorised"
           },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
@@ -287,6 +293,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -429,6 +438,9 @@
           "401": {
             "$ref": "#/components/responses/Unauthorised"
           },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
@@ -564,6 +576,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
@@ -997,6 +1012,26 @@
               },
               "additionalProperties": false,
               "required": ["error"]
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "You do not have sufficient permission to perform this action",
+                  "enum": [
+                    "You do not have sufficient permission to perform this action"
+                  ]
+                }
+              }
             }
           }
         }
