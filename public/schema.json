@@ -1120,7 +1120,8 @@
                   "description": "The error message",
                   "example": "You do not have sufficient permission to perform this action",
                   "enum": [
-                    "You do not have sufficient permission to perform this action"
+                    "You do not have sufficient permission to perform this action",
+                    "Forbidden"
                   ]
                 }
               }
