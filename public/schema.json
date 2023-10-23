@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.2.0",
+    "version": "2.3.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -11,8 +11,8 @@
   },
   "tags": [
     {
-      "name": "Account",
-      "description": "Endpoints for accounts"
+      "name": "Chapter Definitions",
+      "description": "Endpoints for chapter definitions"
     },
     {
       "name": "Study Procedures",
@@ -34,6 +34,64 @@
     }
   ],
   "paths": {
+    "/accounts/{account_id}/chapter_definitions": {
+      "get": {
+        "summary": "Fetches chapter definitions for an account",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getAccountChapterDefinitions",
+        "description": "Fetches chapter definitions for an account",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Chapter Definitions"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChapterDefinitions"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
         "summary": "Fetches an asset for a trial container",
@@ -79,9 +137,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -97,7 +153,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -137,9 +199,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -176,9 +236,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -194,7 +252,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -270,9 +334,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -288,7 +350,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -400,9 +468,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -419,10 +485,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
                 }
               }
             }
@@ -431,7 +494,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -473,9 +542,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "authenticity_token"
-                ]
+                "required": ["authenticity_token"]
               }
             }
           }
@@ -542,9 +609,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -568,7 +633,13 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorized"
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
           },
           "409": {
             "$ref": "#/components/responses/Conflict"
@@ -646,9 +717,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -662,10 +731,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -811,13 +877,20 @@
           "$ref": "#/components/schemas/Chapter"
         }
       },
+      "ChapterDefinitions": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ChapterDefinition"
+        }
+      },
       "Chapter": {
         "type": "object",
         "properties": {
           "chapter_definition_id": {
             "type": "integer",
             "description": "The chapter definition id",
-            "example": 1
+            "example": 1,
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -841,13 +914,35 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "chapter_definition_id",
-          "name",
-          "color",
-          "start_time",
-          "end_time"
-        ]
+        "required": ["name", "color", "start_time", "end_time"]
+      },
+      "ChapterDefinition": {
+        "description": "A chapter definition",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The id of chapter definition",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of chapter definition",
+            "example": "pre"
+          },
+          "color": {
+            "type": "string",
+            "description": "The color of chapter definition",
+            "example": "#ccc"
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of chapter definition",
+            "example": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": ["id", "name", "color"]
       },
       "User": {
         "type": "object",
@@ -879,13 +974,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -914,12 +1003,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -937,10 +1021,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -960,21 +1041,20 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
         "type": "object",
         "properties": {
-          "message": {
+          "error": {
             "type": "string",
             "description": "The error message",
             "example": "Bad request. Missing or invalid input parameters."
           }
-        }
+        },
+        "additionalProperties": false,
+        "required": ["error"]
       }
     },
     "responses": {
@@ -988,12 +1068,63 @@
           }
         }
       },
-      "Unauthorized": {
-        "description": "Unauthorized. Missing or invalid authentication credentials.",
+      "NotFound": {
+        "description": "Not found. The requested resource was not found.",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Error"
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Not found",
+                  "enum": ["Not found"]
+                }
+              },
+              "additionalProperties": false,
+              "required": ["error"]
+            }
+          }
+        }
+      },
+      "Unauthorised": {
+        "description": "Unauthorised. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "Unauthorised",
+                  "enum": ["Unauthorised"]
+                }
+              },
+              "additionalProperties": false,
+              "required": ["error"]
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "Forbidden. The request was valid, but the server is refusing action.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "The error message",
+                  "example": "You do not have sufficient permission to perform this action",
+                  "enum": [
+                    "You do not have sufficient permission to perform this action",
+                    "Forbidden"
+                  ]
+                }
+              }
             }
           }
         }
