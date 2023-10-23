@@ -833,7 +833,6 @@
             "example": 100
           }
         },
-        "additionalProperties": false,
         "required": [
           "name",
           "color",
