@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.3.1",
+    "version": "2.3.2",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -732,6 +732,7 @@
                   "url": {
                     "type": "string",
                     "description": "The asset media url",
+                    "nullable": true,
                     "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
                   }
                 },
