@@ -1027,16 +1027,19 @@
           },
           "progress": {
             "type": "string",
+            "nullable": true,
             "description": "The asset video progress",
             "example": "100"
           },
           "status": {
             "type": "string",
+            "nullable": true,
             "description": "The asset video status",
             "example": "complete"
           },
           "frame_rate": {
             "type": "string",
+            "nullable": true,
             "description": "The asset video frame rate",
             "example": "25"
           }
