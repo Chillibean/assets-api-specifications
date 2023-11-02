@@ -493,7 +493,7 @@
           }
         }
       },
-      "put": {
+      "post": {
         "summary": "Updates chapters for an asset",
         "security": [
           {
