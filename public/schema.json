@@ -11,16 +11,20 @@
   },
   "tags": [
     {
+      "name": "Chapters",
+      "description": "Endpoints for Asset chapters"
+    },
+    {
       "name": "Chapter Definitions",
-      "description": "Endpoints for chapter definitions"
+      "description": "Endpoints for Chapter Definitions used in an Asset"
     },
     {
       "name": "Study Procedures",
-      "description": "Endpoints for study procedures"
+      "description": "Endpoints for Study Procedures"
     },
     {
       "name": "Trial Containers",
-      "description": "Endpoints for trial containers"
+      "description": "Endpoints for Trial Containers"
     }
   ],
   "servers": [
@@ -36,7 +40,7 @@
   "paths": {
     "/accounts/{account_id}/chapter_definitions": {
       "get": {
-        "summary": "Fetches chapter definitions for an account",
+        "summary": "Fetches chapter definitions for an account to be used for an asset",
         "security": [
           {
             "userSessionKey": []
@@ -59,9 +63,7 @@
             }
           }
         ],
-        "tags": [
-          "Chapter Definitions"
-        ],
+        "tags": ["Chapter Definitions"],
         "responses": {
           "200": {
             "description": "OK",
@@ -139,9 +141,7 @@
             }
           }
         ],
-        "tags": [
-          "Trial Containers"
-        ],
+        "tags": ["Trial Containers"],
         "responses": {
           "200": {
             "description": "OK",
@@ -239,9 +239,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -375,9 +373,7 @@
             }
           }
         ],
-        "tags": [
-          "Study Procedures"
-        ],
+        "tags": ["Study Procedures"],
         "responses": {
           "200": {
             "description": "OK",
@@ -394,10 +390,182 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset",
-                    "updates"
-                  ]
+                  "required": ["asset", "updates"]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
+      "get": {
+        "summary": "Fetches chapters for an asset",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "getAssetChapters",
+        "description": "Fetches chapters for an asset",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Chapters"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chapters"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "put": {
+        "summary": "Updates chapters for an asset",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "putAssetChapters",
+        "description": "Updates chapters for an asset",
+        "requestBody": {
+          "description": "Asset chapters update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The asset chapters update authenticity token",
+                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  },
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Chapters"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chapters"
                 }
               }
             }
@@ -491,9 +659,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -507,10 +673,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -694,12 +857,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "name",
-          "color",
-          "start_time",
-          "end_time"
-        ]
+        "required": ["name", "color", "start_time", "end_time"]
       },
       "ChapterDefinition": {
         "description": "A chapter definition",
@@ -727,11 +885,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color"
-        ]
+        "required": ["id", "name", "color"]
       },
       "User": {
         "type": "object",
@@ -763,13 +917,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -801,12 +949,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -824,10 +967,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -847,10 +987,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "Error": {
         "description": "An error",
@@ -867,21 +1004,15 @@
                 "description": "The error fields",
                 "type": "object",
                 "example": {
-                  "name": [
-                    "can't be blank"
-                  ],
-                  "color": [
-                    "can't be blank"
-                  ]
+                  "name": ["can't be blank"],
+                  "color": ["can't be blank"]
                 }
               }
             }
           }
         },
         "additionalProperties": false,
-        "required": [
-          "errors"
-        ]
+        "required": ["errors"]
       }
     },
     "responses": {
@@ -906,15 +1037,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
+                  "enum": ["Not found"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
@@ -930,15 +1057,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
+                  "enum": ["Unauthorised"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
