@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.3.3",
+    "version": "2.4.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -59,7 +59,9 @@
             }
           }
         ],
-        "tags": ["Chapter Definitions"],
+        "tags": [
+          "Chapter Definitions"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -137,7 +139,9 @@
             }
           }
         ],
-        "tags": ["Trial Containers"],
+        "tags": [
+          "Trial Containers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -199,7 +203,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["authenticity_token"]
+                "required": [
+                  "authenticity_token"
+                ]
               }
             }
           }
@@ -236,7 +242,9 @@
             }
           }
         ],
-        "tags": ["Trial Containers"],
+        "tags": [
+          "Trial Containers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -334,7 +342,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -468,7 +478,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -485,7 +497,10 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": ["asset", "updates"]
+                  "required": [
+                    "asset",
+                    "updates"
+                  ]
                 }
               }
             }
@@ -542,7 +557,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["authenticity_token"]
+                "required": [
+                  "authenticity_token"
+                ]
               }
             }
           }
@@ -609,7 +626,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -718,7 +737,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               {
                 "type": "object",
@@ -732,7 +753,10 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["sd_video", "hd_video"]
+                "required": [
+                  "sd_video",
+                  "hd_video"
+                ]
               }
             ]
           },
@@ -916,7 +940,12 @@
           }
         },
         "additionalProperties": false,
-        "required": ["name", "color", "start_time", "end_time"]
+        "required": [
+          "name",
+          "color",
+          "start_time",
+          "end_time"
+        ]
       },
       "ChapterDefinition": {
         "description": "A chapter definition",
@@ -944,7 +973,11 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "name", "color"]
+        "required": [
+          "id",
+          "name",
+          "color"
+        ]
       },
       "User": {
         "type": "object",
@@ -976,7 +1009,13 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "email", "uuid", "first_name", "last_name"]
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
       },
       "Video": {
         "type": "object",
@@ -1008,7 +1047,12 @@
           }
         },
         "additionalProperties": false,
-        "required": ["url", "progress", "status", "frame_rate"]
+        "required": [
+          "url",
+          "progress",
+          "status",
+          "frame_rate"
+        ]
       },
       "InfoFields": {
         "type": "object",
@@ -1026,7 +1070,10 @@
           }
         },
         "additionalProperties": true,
-        "required": ["Title", "Reviewed"]
+        "required": [
+          "Title",
+          "Reviewed"
+        ]
       },
       "Thumbnails": {
         "type": "object",
@@ -1046,7 +1093,10 @@
           }
         },
         "additionalProperties": false,
-        "required": ["small", "large"]
+        "required": [
+          "small",
+          "large"
+        ]
       },
       "Error": {
         "description": "An error",
@@ -1059,7 +1109,9 @@
           }
         },
         "additionalProperties": false,
-        "required": ["error"]
+        "required": [
+          "error"
+        ]
       }
     },
     "responses": {
@@ -1084,11 +1136,15 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": ["Not found"]
+                  "enum": [
+                    "Not found"
+                  ]
                 }
               },
               "additionalProperties": false,
-              "required": ["error"]
+              "required": [
+                "error"
+              ]
             }
           }
         }
@@ -1104,11 +1160,15 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": ["Unauthorised"]
+                  "enum": [
+                    "Unauthorised"
+                  ]
                 }
               },
               "additionalProperties": false,
-              "required": ["error"]
+              "required": [
+                "error"
+              ]
             }
           }
         }
