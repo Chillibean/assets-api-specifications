@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.3.3",
+    "version": "2.4.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -1052,14 +1052,28 @@
         "description": "An error",
         "type": "object",
         "properties": {
-          "error": {
-            "type": "string",
-            "description": "The error message",
-            "example": "Bad request. Missing or invalid input parameters."
+          "errors": {
+            "type": "object",
+            "properties": {
+              "message": {
+                "description": "The error message",
+                "example": "Bad request. Missing or invalid input parameters."
+              },
+              "fields": {
+                "description": "The error fields",
+                "type": "object",
+                "example": {
+                  "name": ["can't be blank"],
+                  "color": ["can't be blank"]
+                }
+              }
+            }
           }
         },
         "additionalProperties": false,
-        "required": ["error"]
+        "required": [
+          "errors"
+        ]
       }
     },
     "responses": {
