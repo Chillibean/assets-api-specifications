@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.4.0",
+    "version": "2.5.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -11,16 +11,20 @@
   },
   "tags": [
     {
+      "name": "Chapters",
+      "description": "Endpoints for Asset chapters"
+    },
+    {
       "name": "Chapter Definitions",
-      "description": "Endpoints for chapter definitions"
+      "description": "Endpoints for Chapter Definitions used in an Asset"
     },
     {
       "name": "Study Procedures",
-      "description": "Endpoints for study procedures"
+      "description": "Endpoints for Study Procedures"
     },
     {
       "name": "Trial Containers",
-      "description": "Endpoints for trial containers"
+      "description": "Endpoints for Trial Containers"
     }
   ],
   "servers": [
@@ -36,7 +40,7 @@
   "paths": {
     "/accounts/{account_id}/chapter_definitions": {
       "get": {
-        "summary": "Fetches chapter definitions for an account",
+        "summary": "Fetches chapter definitions for an account to be used for an asset",
         "security": [
           {
             "userSessionKey": []
@@ -105,105 +109,6 @@
         ],
         "operationId": "getAsset",
         "description": "Fetches an asset for a trial container",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "trial_container_id",
-            "in": "path",
-            "description": "The trial container id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "asset_id",
-            "in": "path",
-            "description": "The asset id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "tags": ["Trial Containers"],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorised"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
-      "put": {
-        "summary": "Updates an asset for a trial container",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "operationId": "putAsset",
-        "description": "Updates an asset for a trial container",
-        "requestBody": {
-          "description": "Asset update parameters",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "chapters": {
-                    "$ref": "#/components/schemas/Chapters"
-                  },
-                  "authenticity_token": {
-                    "type": "string",
-                    "description": "The asset authenticity token",
-                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
-                  }
-                },
-                "additionalProperties": false,
-                "required": ["authenticity_token"]
-              }
-            }
-          }
-        },
         "parameters": [
           {
             "name": "account_id",
@@ -511,9 +416,9 @@
         }
       }
     },
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{id}": {
-      "put": {
-        "summary": "Updates an asset for a study procedure",
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
+      "get": {
+        "summary": "Fetches chapters for an asset",
         "security": [
           {
             "userSessionKey": []
@@ -522,27 +427,101 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "putStudyProcedureAsset",
-        "description": "Updates an asset for a study procedure",
+        "operationId": "getAssetChapters",
+        "description": "Fetches chapters for an asset",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "trial_container_id",
+            "in": "path",
+            "description": "The trial container id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "tags": ["Chapters"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Chapters"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "post": {
+        "summary": "Updates chapters for an asset",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "putAssetChapters",
+        "description": "Updates chapters for an asset",
         "requestBody": {
-          "description": "Asset update parameters",
+          "description": "Asset chapters update parameters",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "chapters": {
-                    "$ref": "#/components/schemas/Chapters"
-                  },
                   "authenticity_token": {
                     "type": "string",
-                    "description": "The asset authenticity token",
+                    "description": "The asset chapters update authenticity token",
                     "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
+                  },
+                  "chapters": {
+                    "$ref": "#/components/schemas/Chapters"
                   }
-                },
-                "additionalProperties": false,
-                "required": ["authenticity_token"]
+                }
               }
             }
           }
@@ -559,9 +538,9 @@
             }
           },
           {
-            "name": "site_id",
+            "name": "trial_container_id",
             "in": "path",
-            "description": "The site id",
+            "description": "The trial container id",
             "required": true,
             "schema": {
               "type": "string",
@@ -569,37 +548,7 @@
             }
           },
           {
-            "name": "subject_id",
-            "in": "path",
-            "description": "The subject id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "SUBJECT_ID"
-            }
-          },
-          {
-            "name": "study_event_id",
-            "in": "path",
-            "description": "The study event id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_EVENT_ID"
-            }
-          },
-          {
-            "name": "study_procedure_id",
-            "in": "path",
-            "description": "The study procedure id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_PROCEDURE_ID"
-            }
-          },
-          {
-            "name": "id",
+            "name": "asset_id",
             "in": "path",
             "description": "The asset id",
             "required": true,
@@ -609,22 +558,14 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": ["Chapters"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "asset": {
-                      "$ref": "#/components/schemas/Asset"
-                    },
-                    "updates": {
-                      "$ref": "#/components/schemas/AssetUpdates"
-                    }
-                  }
+                  "$ref": "#/components/schemas/Chapters"
                 }
               }
             }
@@ -1071,9 +1012,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "errors"
-        ]
+        "required": ["errors"]
       }
     },
     "responses": {
