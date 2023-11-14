@@ -849,6 +849,11 @@
       "Chapter": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of chapter",
+            "example": "c192a32d-c5cf-483d-8a30-2a0def1290d3"
+          },
           "chapter_definition_id": {
             "type": "integer",
             "description": "The chapter definition id",
@@ -878,6 +883,7 @@
         },
         "additionalProperties": false,
         "required": [
+          "id",
           "name",
           "color",
           "start_time",
