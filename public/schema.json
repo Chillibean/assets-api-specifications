@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.5.0",
+    "version": "2.6.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -63,7 +63,9 @@
             }
           }
         ],
-        "tags": ["Chapter Definitions"],
+        "tags": [
+          "Chapter Definitions"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -141,7 +143,9 @@
             }
           }
         ],
-        "tags": ["Trial Containers"],
+        "tags": [
+          "Trial Containers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -239,7 +243,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -373,7 +379,9 @@
             }
           }
         ],
-        "tags": ["Study Procedures"],
+        "tags": [
+          "Study Procedures"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -390,7 +398,10 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": ["asset", "updates"]
+                  "required": [
+                    "asset",
+                    "updates"
+                  ]
                 }
               }
             }
@@ -461,7 +472,9 @@
             }
           }
         ],
-        "tags": ["Chapters"],
+        "tags": [
+          "Chapters"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -558,7 +571,9 @@
             }
           }
         ],
-        "tags": ["Chapters"],
+        "tags": [
+          "Chapters"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -659,7 +674,9 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["url"]
+                "required": [
+                  "url"
+                ]
               },
               {
                 "type": "object",
@@ -673,7 +690,10 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": ["sd_video", "hd_video"]
+                "required": [
+                  "sd_video",
+                  "hd_video"
+                ]
               }
             ]
           },
@@ -829,6 +849,11 @@
       "Chapter": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "The id of chapter",
+            "example": "c192a32d-c5cf-483d-8a30-2a0def1290d3"
+          },
           "chapter_definition_id": {
             "type": "integer",
             "description": "The chapter definition id",
@@ -857,7 +882,13 @@
           }
         },
         "additionalProperties": false,
-        "required": ["name", "color", "start_time", "end_time"]
+        "required": [
+          "id",
+          "name",
+          "color",
+          "start_time",
+          "end_time"
+        ]
       },
       "ChapterDefinition": {
         "description": "A chapter definition",
@@ -885,7 +916,11 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "name", "color"]
+        "required": [
+          "id",
+          "name",
+          "color"
+        ]
       },
       "User": {
         "type": "object",
@@ -917,7 +952,13 @@
           }
         },
         "additionalProperties": false,
-        "required": ["id", "email", "uuid", "first_name", "last_name"]
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name"
+        ]
       },
       "Video": {
         "type": "object",
@@ -949,7 +990,12 @@
           }
         },
         "additionalProperties": false,
-        "required": ["url", "progress", "status", "frame_rate"]
+        "required": [
+          "url",
+          "progress",
+          "status",
+          "frame_rate"
+        ]
       },
       "InfoFields": {
         "type": "object",
@@ -967,7 +1013,10 @@
           }
         },
         "additionalProperties": true,
-        "required": ["Title", "Reviewed"]
+        "required": [
+          "Title",
+          "Reviewed"
+        ]
       },
       "Thumbnails": {
         "type": "object",
@@ -987,7 +1036,10 @@
           }
         },
         "additionalProperties": false,
-        "required": ["small", "large"]
+        "required": [
+          "small",
+          "large"
+        ]
       },
       "Error": {
         "description": "An error",
@@ -1004,15 +1056,21 @@
                 "description": "The error fields",
                 "type": "object",
                 "example": {
-                  "name": ["can't be blank"],
-                  "color": ["can't be blank"]
+                  "name": [
+                    "can't be blank"
+                  ],
+                  "color": [
+                    "can't be blank"
+                  ]
                 }
               }
             }
           }
         },
         "additionalProperties": false,
-        "required": ["errors"]
+        "required": [
+          "errors"
+        ]
       }
     },
     "responses": {
@@ -1037,11 +1095,15 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": ["Not found"]
+                  "enum": [
+                    "Not found"
+                  ]
                 }
               },
               "additionalProperties": false,
-              "required": ["error"]
+              "required": [
+                "error"
+              ]
             }
           }
         }
@@ -1057,11 +1119,15 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": ["Unauthorised"]
+                  "enum": [
+                    "Unauthorised"
+                  ]
                 }
               },
               "additionalProperties": false,
-              "required": ["error"]
+              "required": [
+                "error"
+              ]
             }
           }
         }
