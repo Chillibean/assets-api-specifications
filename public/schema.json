@@ -720,6 +720,11 @@
           },
           "chapters": {
             "$ref": "#/components/schemas/Chapters"
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of asset",
+            "example": 1
           }
         },
         "additionalProperties": false,
