@@ -16,11 +16,11 @@
     },
     {
       "name": "Study Procedure Assets",
-      "description": "Endpoints for Study Procedures"
+      "description": "Endpoints for Study Procedure Assets"
     },
     {
       "name": "Trial Container Assets",
-      "description": "Endpoints for Trial Containers"
+      "description": "Endpoints for Trial Container Assets"
     }
   ],
   "servers": [
