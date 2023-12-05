@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.7.0",
+    "version": "2.8.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -15,16 +15,12 @@
       "description": "Endpoints for Asset chapters"
     },
     {
-      "name": "Chapter Definitions",
-      "description": "Endpoints for Chapter Definitions used in an Asset"
+      "name": "Study Procedure Assets",
+      "description": "Endpoints for Study Procedure Assets"
     },
     {
-      "name": "Study Procedures",
-      "description": "Endpoints for Study Procedures"
-    },
-    {
-      "name": "Trial Containers",
-      "description": "Endpoints for Trial Containers"
+      "name": "Trial Container Assets",
+      "description": "Endpoints for Trial Container Assets"
     }
   ],
   "servers": [
@@ -38,69 +34,9 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/chapter_definitions": {
-      "get": {
-        "summary": "Fetches chapter definitions for an account to be used for an asset",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "operationId": "getAccountChapterDefinitions",
-        "description": "Fetches chapter definitions for an account",
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "tags": [
-          "Chapter Definitions"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ChapterDefinitions"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorised"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
-        "summary": "Fetches an asset for a trial container",
+        "summary": "Fetches an asset in a trial container",
         "security": [
           {
             "userSessionKey": []
@@ -110,7 +46,7 @@
           }
         ],
         "operationId": "getAsset",
-        "description": "Fetches an asset for a trial container",
+        "description": "Fetches an asset in a trial container",
         "parameters": [
           {
             "name": "account_id",
@@ -144,7 +80,7 @@
           }
         ],
         "tags": [
-          "Trial Containers"
+          "Trial Container Assets"
         ],
         "responses": {
           "200": {
@@ -180,7 +116,7 @@
     },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "get": {
-        "summary": "Fetches assets for a study procedure",
+        "summary": "Fetches assets in a study procedure",
         "security": [
           {
             "userSessionKey": []
@@ -190,7 +126,7 @@
           }
         ],
         "operationId": "getStudyProcedureAssets",
-        "description": "Fetches assets for a study procedure",
+        "description": "Fetches assets in a study procedure",
         "parameters": [
           {
             "name": "account_id",
@@ -244,7 +180,7 @@
           }
         ],
         "tags": [
-          "Study Procedures"
+          "Study Procedure Assets"
         ],
         "responses": {
           "200": {
@@ -278,7 +214,7 @@
         }
       },
       "post": {
-        "summary": "Creates an asset for a study procedure",
+        "summary": "Creates an asset in a study procedure",
         "security": [
           {
             "userSessionKey": []
@@ -288,7 +224,7 @@
           }
         ],
         "operationId": "postStudyProcedureAsset",
-        "description": "Creates an asset for a study procedure",
+        "description": "Creates an asset in a study procedure",
         "requestBody": {
           "description": "Asset creation parameters",
           "required": true,
@@ -380,7 +316,7 @@
           }
         ],
         "tags": [
-          "Study Procedures"
+          "Study Procedure Assets"
         ],
         "responses": {
           "200": {
