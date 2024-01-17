@@ -333,7 +333,7 @@
                       "$ref": "#/components/schemas/StudyProcedure"
                     },
                     "study_events": {
-                      "$ref": "#/components/schemas/StudyEvents"
+                      "$ref": "#/components/schemas/Schedule"
                     }
                   },
                   "additionalProperties": false,
@@ -568,7 +568,7 @@
           "$ref": "#/components/schemas/AssetShort"
         }
       },
-      "StudyEvents": {
+      "Schedule": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/StudyEvent"
