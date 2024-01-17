@@ -332,7 +332,7 @@
                     "study_procedure": {
                       "$ref": "#/components/schemas/StudyProcedure"
                     },
-                    "study_events": {
+                    "schedule": {
                       "$ref": "#/components/schemas/Schedule"
                     }
                   },
