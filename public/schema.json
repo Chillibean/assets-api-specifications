@@ -329,8 +329,11 @@
                     "asset": {
                       "$ref": "#/components/schemas/Asset"
                     },
-                    "updates": {
-                      "$ref": "#/components/schemas/AssetUpdates"
+                    "study_procedure": {
+                      "$ref": "#/components/schemas/StudyProcedure"
+                    },
+                    "study_events": {
+                      "$ref": "#/components/schemas/StudyEvents"
                     }
                   },
                   "additionalProperties": false,
@@ -563,6 +566,12 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/AssetShort"
+        }
+      },
+      "StudyEvents": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/StudyEvent"
         }
       },
       "Asset": {
@@ -1005,6 +1014,213 @@
           "small",
           "large"
         ]
+      },
+      "StudyProtocol": {
+        "description": "Protocol for a procedure/event",
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The protocol id",
+            "type": "number",
+            "example": 1
+          },
+          "locked": {
+            "description": "locked status of the protocol",
+            "type": "boolean",
+            "example": false
+          },
+          "name": {
+            "description": "The name of the protocol",
+            "type": "string",
+            "example": "Ghost Protocol"
+          },
+          "study_event_display_name": {
+            "$ref": "#/components/schemas/PluralDisplay"
+          },
+          "study_procedure_display_name": {
+            "$ref": "#/components/schemas/PluralDisplay"
+          },
+          "study_procedure_role_definitions": {
+            "description": "The role definitions of the study procedure",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoleDefinition"
+            }
+          },
+          "version_number": {
+            "description": "The version number of the protocol",
+            "type": "number",
+            "example": 1
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "study_event_display_name",
+          "study_procedure_display_name",
+          "locked",
+          "version_number",
+          "study_procedure_role_definitions"
+        ],
+        "additionalProperties": false
+      },
+      "StudyEvent": {
+        "description": "A scheduled event for a subject",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The event id",
+            "example": 1
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the event",
+            "example": "2024-01-02",
+            "nullable": true
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name of the event",
+            "example": "Day 1"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The identifier of the event",
+            "example": "DAY1"
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of the event",
+            "example": 1,
+            "nullable": true
+          },
+          "procedures": {
+            "type": "array",
+            "description": "The procedures for the event",
+            "items": {
+              "$ref": "#/components/schemas/StudyProcedure"
+            }
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/StudyProtocol"
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the event",
+            "example": "complete",
+            "enum": [
+              "not_started",
+              "in_progress",
+              "complete",
+              "requires_attention",
+              "not_required"
+            ]
+          },
+          "study_arm": {
+            "type": "string",
+            "description": "The study arm of the event",
+            "example": "Arm 1",
+            "nullable": true
+          },
+          "study_event_type": {
+            "type": "string",
+            "description": "The study event type of the event",
+            "example": "scheduled",
+            "enum": [
+              "scheduled",
+              "unscheduled"
+            ]
+          }
+        },
+        "required": [
+          "identifier",
+          "display_name",
+          "date",
+          "status",
+          "procedures",
+          "study_arm",
+          "protocol",
+          "study_event_type",
+          "position"
+        ],
+        "additionalProperties": false
+      },
+      "StudyProcedure": {
+        "description": "A procedure for an event",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "The procedure id",
+            "example": 1,
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "description": "The date of the procedure",
+            "example": "2024-01-02",
+            "nullable": true
+          },
+          "display_name": {
+            "type": "string",
+            "description": "The display name of the procedure",
+            "example": "North Star"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "The identifier of the procedure",
+            "example": "NSTAR"
+          },
+          "protocol": {
+            "$ref": "#/components/schemas/StudyProtocol"
+          },
+          "role_definitions": {
+            "type": "array",
+            "description": "The role definitions of the procedure",
+            "items": {
+              "$ref": "#/components/schemas/RoleDefinitionWithContributors"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "The status of the procedure",
+            "example": "complete",
+            "enum": [
+              "not_started",
+              "in_progress",
+              "complete",
+              "requires_attention",
+              "not_required"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "identifier",
+          "display_name",
+          "date",
+          "protocol",
+          "role_definitions",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "PluralDisplay": {
+        "description": "Pluralised naming conventions",
+        "type": "object",
+        "properties": {
+          "plural": {
+            "description": "The plural name",
+            "type": "string",
+            "example": "visits"
+          },
+          "singular": {
+            "description": "The singular name",
+            "type": "string",
+            "example": "visit"
+          }
+        }
       },
       "Error": {
         "description": "An error",
