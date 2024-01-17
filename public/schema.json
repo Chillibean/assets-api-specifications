@@ -338,8 +338,7 @@
                   },
                   "additionalProperties": false,
                   "required": [
-                    "asset",
-                    "updates"
+                    "asset"
                   ]
                 }
               }
