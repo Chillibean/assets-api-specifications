@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.0.0",
+    "version": "3.0.1",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -307,11 +307,6 @@
                     "type": "string",
                     "description": "The asset s3 name",
                     "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
-                  },
-                  "authenticity_token": {
-                    "type": "string",
-                    "description": "The asset authenticity token",
-                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
                   }
                 }
               }
@@ -499,11 +494,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "authenticity_token": {
-                    "type": "string",
-                    "description": "The asset chapters update authenticity token",
-                    "example": "VjSSYLd24JWR7jTOKu8V61nODVwo1ZGCkx9UZKp5MC2J8+3e+gjg3p14CRIjKuNQ0Vn96GcS1oe4ne+aMnGuHw=="
-                  },
                   "chapters": {
                     "$ref": "#/components/schemas/Chapters"
                   }
