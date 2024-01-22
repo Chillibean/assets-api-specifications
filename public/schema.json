@@ -794,6 +794,11 @@
             "description": "The asset title",
             "example": "Asset 1"
           },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
           "thumbnails": {
             "$ref": "#/components/schemas/Thumbnails"
           }
@@ -802,6 +807,7 @@
         "required": [
           "id",
           "title",
+          "media_type",
           "thumbnails"
         ]
       },
