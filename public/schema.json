@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.0.1",
+    "version": "3.0.2",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -88,7 +88,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Asset"
+                  "$ref": "#/components/schemas/AssetWithInfoFields"
                 }
               }
             }
@@ -631,6 +631,113 @@
               }
             ]
           },
+          "thumbnails": {
+            "$ref": "#/components/schemas/Thumbnails"
+          },
+          "study_procedure_identifier": {
+            "type": "string",
+            "description": "The asset study procedure identifier",
+            "example": "PROCEDURE"
+          },
+          "study_event_identifier": {
+            "type": "string",
+            "description": "The asset study event identifier",
+            "example": "EVENT"
+          },
+          "subject_number": {
+            "type": "string",
+            "description": "The asset subject number",
+            "example": "123"
+          },
+          "chapters": {
+            "$ref": "#/components/schemas/Chapters"
+          },
+          "position": {
+            "type": "number",
+            "description": "The position of asset",
+            "example": 1
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "filename",
+          "created_at",
+          "created_by",
+          "media_type",
+          "media",
+          "thumbnails"
+        ]
+      },
+      "AssetWithInfoFields": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The asset id",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "The asset title",
+            "example": "Asset 1"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The asset filename",
+            "example": "asset_1.mp4"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset created at date",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "created_by": {
+            "$ref": "#/components/schemas/User"
+          },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
+          "media": {
+            "oneOf": [
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "description": "The asset media url",
+                    "nullable": true,
+                    "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "type": "object",
+                "description": "The links to the asset media",
+                "properties": {
+                  "sd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  },
+                  "hd_video": {
+                    "$ref": "#/components/schemas/Video"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "sd_video",
+                  "hd_video"
+                ]
+              }
+            ]
+          },
           "asset_infos": {
             "$ref": "#/components/schemas/InfoFields"
           },
@@ -687,6 +794,11 @@
             "description": "The asset title",
             "example": "Asset 1"
           },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
           "thumbnails": {
             "$ref": "#/components/schemas/Thumbnails"
           }
@@ -695,6 +807,7 @@
         "required": [
           "id",
           "title",
+          "media_type",
           "thumbnails"
         ]
       },
