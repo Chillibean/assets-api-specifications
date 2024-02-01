@@ -471,12 +471,6 @@
                   "properties": {
                     "asset": {
                       "$ref": "#/components/schemas/Asset"
-                    },
-                    "study_procedure": {
-                      "$ref": "#/components/schemas/StudyProcedure"
-                    },
-                    "schedule": {
-                      "$ref": "#/components/schemas/Schedule"
                     }
                   },
                   "additionalProperties": false,
