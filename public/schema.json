@@ -467,14 +467,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "asset": {
-                      "$ref": "#/components/schemas/Asset"
-                    }
-                  },
-                  "additionalProperties": false,
-                  "required": ["asset"]
+                  "$ref": "#/components/schemas/Asset"
                 }
               }
             }
