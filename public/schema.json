@@ -39,9 +39,7 @@
         "summary": "Fetches an asset in a trial container",
         "description": "Fetches an asset in a trial container",
         "operationId": "getAsset",
-        "tags": [
-          "Trial Container Assets"
-        ],
+        "tags": ["Trial Container Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -119,9 +117,7 @@
         "summary": "Fetches assets in a study procedure",
         "description": "Fetches assets in a study procedure",
         "operationId": "getStudyProcedureAssets",
-        "tags": [
-          "Study Procedure Assets"
-        ],
+        "tags": ["Study Procedure Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -217,9 +213,7 @@
         "summary": "Creates an asset in a study procedure",
         "description": "Creates an asset in a study procedure",
         "operationId": "postStudyProcedureAsset",
-        "tags": [
-          "Study Procedure Assets"
-        ],
+        "tags": ["Study Procedure Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -332,9 +326,148 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset"
-                  ]
+                  "required": ["asset"]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{asset_id}": {
+      "put": {
+        "summary": "Updates an asset in a study procedure",
+        "description": "Updates an asset in a study procedure",
+        "operationId": "putStudyProcedureAsset",
+        "tags": ["Study Procedure Assets"],
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          },
+          {
+            "name": "asset_id",
+            "in": "path",
+            "description": "The asset id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Asset update parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filename": {
+                    "type": "string",
+                    "description": "The asset filename",
+                    "example": "sample-vid.mp4"
+                  },
+                  "filesize": {
+                    "type": "integer",
+                    "description": "The asset filesize",
+                    "example": 37512140
+                  },
+                  "mime_type": {
+                    "type": "string",
+                    "description": "The asset mime type",
+                    "example": "video/mp4"
+                  },
+                  "s3_name": {
+                    "type": "string",
+                    "description": "The asset s3 name",
+                    "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Asset"
                 }
               }
             }
@@ -365,9 +498,7 @@
         "summary": "Fetches chapters for an asset",
         "description": "Fetches chapters for an asset",
         "operationId": "getAssetChapters",
-        "tags": [
-          "Chapters"
-        ],
+        "tags": ["Chapters"],
         "security": [
           {
             "userSessionKey": []
@@ -443,9 +574,7 @@
         "summary": "Updates chapters for an asset",
         "description": "Updates chapters for an asset",
         "operationId": "putAssetChapters",
-        "tags": [
-          "Chapters"
-        ],
+        "tags": ["Chapters"],
         "security": [
           {
             "userSessionKey": []
@@ -581,6 +710,11 @@
             "description": "The asset filename",
             "example": "asset_1.mp4"
           },
+          "extension": {
+            "type": "string",
+            "description": "The asset extension",
+            "example": "mp4"
+          },
           "created_at": {
             "type": "string",
             "description": "The asset created at date",
@@ -608,9 +742,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -624,10 +756,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -663,6 +792,7 @@
           "id",
           "title",
           "filename",
+          "extension",
           "created_at",
           "created_by",
           "media_type",
@@ -715,9 +845,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -731,10 +859,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -804,12 +929,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "title",
-          "media_type",
-          "thumbnails"
-        ]
+        "required": ["id", "title", "media_type", "thumbnails"]
       },
       "AssetUpdates": {
         "type": "array",
@@ -958,13 +1078,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color",
-          "start_time",
-          "end_time"
-        ]
+        "required": ["id", "name", "color", "start_time", "end_time"]
       },
       "ChapterDefinition": {
         "description": "A chapter definition",
@@ -992,11 +1106,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color"
-        ]
+        "required": ["id", "name", "color"]
       },
       "User": {
         "type": "object",
@@ -1028,13 +1138,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -1066,12 +1170,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -1089,10 +1188,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -1112,10 +1208,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "StudyProtocol": {
         "description": "Protocol for a procedure/event",
@@ -1229,10 +1322,7 @@
             "type": "string",
             "description": "The study event type of the event",
             "example": "scheduled",
-            "enum": [
-              "scheduled",
-              "unscheduled"
-            ]
+            "enum": ["scheduled", "unscheduled"]
           }
         },
         "required": [
@@ -1333,12 +1423,7 @@
             "$ref": "#/components/schemas/Role"
           }
         },
-        "required": [
-          "id",
-          "required",
-          "contributors",
-          "role"
-        ],
+        "required": ["id", "required", "contributors", "role"],
         "additionalProperties": false
       },
       "Contributor": {
@@ -1392,12 +1477,7 @@
             "example": "123e4567-e89b-12d3-a456-426655440000"
           }
         },
-        "required": [
-          "id",
-          "first_name",
-          "last_name",
-          "email"
-        ],
+        "required": ["id", "first_name", "last_name", "email"],
         "additionalProperties": false
       },
       "Role": {
@@ -1434,11 +1514,7 @@
             "$ref": "#/components/schemas/Role"
           }
         },
-        "required": [
-          "id",
-          "required",
-          "role"
-        ],
+        "required": ["id", "required", "role"],
         "additionalProperties": false
       },
       "PluralDisplay": {
@@ -1472,21 +1548,15 @@
                 "description": "The error fields",
                 "type": "object",
                 "example": {
-                  "name": [
-                    "can't be blank"
-                  ],
-                  "color": [
-                    "can't be blank"
-                  ]
+                  "name": ["can't be blank"],
+                  "color": ["can't be blank"]
                 }
               }
             }
           }
         },
         "additionalProperties": false,
-        "required": [
-          "errors"
-        ]
+        "required": ["errors"]
       }
     },
     "responses": {
@@ -1511,15 +1581,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
+                  "enum": ["Not found"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
@@ -1535,15 +1601,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
+                  "enum": ["Unauthorised"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
