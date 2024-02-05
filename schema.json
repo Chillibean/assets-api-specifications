@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.1.0",
+    "version": "3.1.1",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -926,10 +926,27 @@
           },
           "thumbnails": {
             "$ref": "#/components/schemas/Thumbnails"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The asset filename",
+            "example": "asset_1.mp4"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset update created at date",
+            "example": "2020-01-01T00:00:00.000Z"
           }
         },
         "additionalProperties": false,
-        "required": ["id", "title", "media_type", "thumbnails"]
+        "required": [
+          "id",
+          "title",
+          "media_type",
+          "thumbnails",
+          "filename",
+          "created_at"
+        ]
       },
       "AssetUpdates": {
         "type": "array",
