@@ -974,7 +974,8 @@
           "media_type",
           "thumbnails",
           "filename",
-          "created_at"
+          "created_at",
+          "extension"
         ]
       },
       "AssetUpdates": {
