@@ -39,9 +39,7 @@
         "summary": "Fetches an asset in a trial container",
         "description": "Fetches an asset in a trial container",
         "operationId": "getAsset",
-        "tags": [
-          "Trial Container Assets"
-        ],
+        "tags": ["Trial Container Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -119,9 +117,7 @@
         "summary": "Fetches assets in a study procedure",
         "description": "Fetches assets in a study procedure",
         "operationId": "getStudyProcedureAssets",
-        "tags": [
-          "Study Procedure Assets"
-        ],
+        "tags": ["Study Procedure Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -217,9 +213,7 @@
         "summary": "Creates an asset in a study procedure",
         "description": "Creates an asset in a study procedure",
         "operationId": "postStudyProcedureAsset",
-        "tags": [
-          "Study Procedure Assets"
-        ],
+        "tags": ["Study Procedure Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -332,9 +326,7 @@
                     }
                   },
                   "additionalProperties": false,
-                  "required": [
-                    "asset"
-                  ]
+                  "required": ["asset"]
                 }
               }
             }
@@ -365,9 +357,7 @@
         "summary": "Updates an asset in a study procedure",
         "description": "Updates an asset in a study procedure",
         "operationId": "putStudyProcedureAsset",
-        "tags": [
-          "Study Procedure Assets"
-        ],
+        "tags": ["Study Procedure Assets"],
         "security": [
           {
             "userSessionKey": []
@@ -508,9 +498,7 @@
         "summary": "Fetches chapters for an asset",
         "description": "Fetches chapters for an asset",
         "operationId": "getAssetChapters",
-        "tags": [
-          "Chapters"
-        ],
+        "tags": ["Chapters"],
         "security": [
           {
             "userSessionKey": []
@@ -586,9 +574,7 @@
         "summary": "Updates chapters for an asset",
         "description": "Updates chapters for an asset",
         "operationId": "putAssetChapters",
-        "tags": [
-          "Chapters"
-        ],
+        "tags": ["Chapters"],
         "security": [
           {
             "userSessionKey": []
@@ -756,9 +742,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -772,10 +756,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -864,9 +845,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
+                "required": ["url"]
               },
               {
                 "type": "object",
@@ -880,10 +859,7 @@
                   }
                 },
                 "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
+                "required": ["sd_video", "hd_video"]
               }
             ]
           },
@@ -967,7 +943,9 @@
           "id",
           "title",
           "media_type",
-          "thumbnails"
+          "thumbnails",
+          "filename",
+          "created_at"
         ]
       },
       "AssetUpdates": {
@@ -1117,13 +1095,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color",
-          "start_time",
-          "end_time"
-        ]
+        "required": ["id", "name", "color", "start_time", "end_time"]
       },
       "ChapterDefinition": {
         "description": "A chapter definition",
@@ -1151,11 +1123,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "name",
-          "color"
-        ]
+        "required": ["id", "name", "color"]
       },
       "User": {
         "type": "object",
@@ -1187,13 +1155,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "id",
-          "email",
-          "uuid",
-          "first_name",
-          "last_name"
-        ]
+        "required": ["id", "email", "uuid", "first_name", "last_name"]
       },
       "Video": {
         "type": "object",
@@ -1225,12 +1187,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "url",
-          "progress",
-          "status",
-          "frame_rate"
-        ]
+        "required": ["url", "progress", "status", "frame_rate"]
       },
       "InfoFields": {
         "type": "object",
@@ -1248,10 +1205,7 @@
           }
         },
         "additionalProperties": true,
-        "required": [
-          "Title",
-          "Reviewed"
-        ]
+        "required": ["Title", "Reviewed"]
       },
       "Thumbnails": {
         "type": "object",
@@ -1271,10 +1225,7 @@
           }
         },
         "additionalProperties": false,
-        "required": [
-          "small",
-          "large"
-        ]
+        "required": ["small", "large"]
       },
       "StudyProtocol": {
         "description": "Protocol for a procedure/event",
@@ -1388,10 +1339,7 @@
             "type": "string",
             "description": "The study event type of the event",
             "example": "scheduled",
-            "enum": [
-              "scheduled",
-              "unscheduled"
-            ]
+            "enum": ["scheduled", "unscheduled"]
           }
         },
         "required": [
@@ -1492,12 +1440,7 @@
             "$ref": "#/components/schemas/Role"
           }
         },
-        "required": [
-          "id",
-          "required",
-          "contributors",
-          "role"
-        ],
+        "required": ["id", "required", "contributors", "role"],
         "additionalProperties": false
       },
       "Contributor": {
@@ -1551,12 +1494,7 @@
             "example": "123e4567-e89b-12d3-a456-426655440000"
           }
         },
-        "required": [
-          "id",
-          "first_name",
-          "last_name",
-          "email"
-        ],
+        "required": ["id", "first_name", "last_name", "email"],
         "additionalProperties": false
       },
       "Role": {
@@ -1593,11 +1531,7 @@
             "$ref": "#/components/schemas/Role"
           }
         },
-        "required": [
-          "id",
-          "required",
-          "role"
-        ],
+        "required": ["id", "required", "role"],
         "additionalProperties": false
       },
       "PluralDisplay": {
@@ -1631,21 +1565,15 @@
                 "description": "The error fields",
                 "type": "object",
                 "example": {
-                  "name": [
-                    "can't be blank"
-                  ],
-                  "color": [
-                    "can't be blank"
-                  ]
+                  "name": ["can't be blank"],
+                  "color": ["can't be blank"]
                 }
               }
             }
           }
         },
         "additionalProperties": false,
-        "required": [
-          "errors"
-        ]
+        "required": ["errors"]
       }
     },
     "responses": {
@@ -1670,15 +1598,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Not found",
-                  "enum": [
-                    "Not found"
-                  ]
+                  "enum": ["Not found"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
@@ -1694,15 +1618,11 @@
                   "type": "string",
                   "description": "The error message",
                   "example": "Unauthorised",
-                  "enum": [
-                    "Unauthorised"
-                  ]
+                  "enum": ["Unauthorised"]
                 }
               },
               "additionalProperties": false,
-              "required": [
-                "error"
-              ]
+              "required": ["error"]
             }
           }
         }
