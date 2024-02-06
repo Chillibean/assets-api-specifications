@@ -577,17 +577,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "description": "The asset ID",
-                    "example": 735562
-                  },
-                  "position": {
-                    "type": "integer",
-                    "description": "The asset positional value of the asset within a study procedure",
-                    "example": 1
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The asset id",
+                      "example": 1
+                    },
+                    "position": {
+                      "type": "integer",
+                      "description": "The asset position",
+                      "example": 1
+                    }
                   }
                 }
               }
