@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.1.2",
+    "version": "3.2.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -478,6 +478,135 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Asset"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorised"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
+      "post": {
+        "summary": "Reorders the assets in a study procedure",
+        "description": "Reorders the assets in a study procedure",
+        "operationId": "postReorderStudyProcedureAssets",
+        "tags": [
+          "Study Procedure Assets"
+        ],
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "The account id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "description": "The site id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1"
+            }
+          },
+          {
+            "name": "subject_id",
+            "in": "path",
+            "description": "The subject id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "SUBJECT_ID"
+            }
+          },
+          {
+            "name": "study_event_id",
+            "in": "path",
+            "description": "The study event id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_EVENT_ID"
+            }
+          },
+          {
+            "name": "study_procedure_id",
+            "in": "path",
+            "description": "The study procedure id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "STUDY_PROCEDURE_ID"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Asset position parameters",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "The asset id",
+                      "example": 1
+                    },
+                    "position": {
+                      "type": "integer",
+                      "description": "The asset position",
+                      "example": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Asset"
+                  }
                 }
               }
             }
