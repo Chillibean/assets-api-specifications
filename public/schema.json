@@ -1094,6 +1094,11 @@
             "type": "string",
             "description": "The asset update created at date",
             "example": "2020-01-01T00:00:00.000Z"
+          },
+          "position": {
+            "type": "number",
+            "description": "The asset position",
+            "example": 1
           }
         },
         "additionalProperties": false,
