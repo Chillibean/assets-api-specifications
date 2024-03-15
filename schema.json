@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.2.3",
+    "version": "3.2.4",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -966,6 +966,11 @@
             "description": "The asset filename",
             "example": "asset_1.mp4"
           },
+          "extension": {
+            "type": "string",
+            "description": "The asset extension",
+            "example": "mp4"
+          },
           "created_at": {
             "type": "string",
             "description": "The asset created at date",
@@ -1051,6 +1056,7 @@
           "id",
           "title",
           "filename",
+          "extension",
           "created_at",
           "created_by",
           "media_type",
