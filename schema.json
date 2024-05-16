@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.2.4",
+    "version": "3.2.5",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -933,6 +933,11 @@
             "type": "number",
             "description": "The position of asset",
             "example": 1
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "The asset processed status",
+            "example": true
           }
         },
         "additionalProperties": false,
@@ -945,7 +950,8 @@
           "created_by",
           "media_type",
           "media",
-          "thumbnails"
+          "thumbnails",
+          "processed"
         ]
       },
       "AssetWithInfoFields": {
@@ -1049,6 +1055,11 @@
             "type": "number",
             "description": "The position of asset",
             "example": 1
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "The asset processed status",
+            "example": true
           }
         },
         "additionalProperties": false,
@@ -1062,7 +1073,8 @@
           "media_type",
           "media",
           "asset_infos",
-          "thumbnails"
+          "thumbnails",
+          "processed"
         ]
       },
       "AssetShort": {
@@ -1105,6 +1117,11 @@
             "type": "number",
             "description": "The asset position",
             "example": 1
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "The asset processed status",
+            "example": true
           }
         },
         "additionalProperties": false,
@@ -1115,7 +1132,8 @@
           "thumbnails",
           "filename",
           "created_at",
-          "extension"
+          "extension",
+          "processed"
         ]
       },
       "AssetUpdates": {
