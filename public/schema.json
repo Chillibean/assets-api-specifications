@@ -505,7 +505,7 @@
     },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
       "post": {
-        "summary": "Reorders the assets in a study procedure",
+        "summary": "Reorders the study procedure assets",
         "description": "Reorders the assets in a study procedure",
         "operationId": "postReorderStudyProcedureAssets",
         "tags": [
