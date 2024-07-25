@@ -1,0 +1,33 @@
+{
+  "description": "A role definition",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The role definition id",
+      "type": "number",
+      "example": 1
+    },
+    "required": {
+      "description": "Whether the role definition is required",
+      "type": "boolean",
+      "example": true
+    },
+    "contributors": {
+      "description": "The contributors of the role definition",
+      "type": "array",
+      "items": {
+        "$ref": "./Contributor.json"
+      }
+    },
+    "role": {
+      "$ref": "./Role.json"
+    }
+  },
+  "required": [
+    "id",
+    "required",
+    "contributors",
+    "role"
+  ],
+  "additionalProperties": false
+}
