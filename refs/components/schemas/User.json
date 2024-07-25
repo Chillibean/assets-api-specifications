@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The user id",
+      "example": 1
+    },
+    "email": {
+      "type": "string",
+      "description": "The users email",
+      "example": "example@email.com"
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The users uuid",
+      "example": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The users first name",
+      "example": "John"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The users last name",
+      "example": "Doe"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "email",
+    "uuid",
+    "first_name",
+    "last_name"
+  ]
+}
