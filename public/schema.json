@@ -75,26 +75,11 @@
       "AssetShort": {
         "$ref": "refs/components/schemas/AssetShort.json"
       },
-      "AssetUpdate": {
-        "$ref": "refs/components/schemas/AssetUpdate.json"
-      },
-      "AssetUpdateItem": {
-        "$ref": "refs/components/schemas/AssetUpdateItem.json"
-      },
-      "AssetUpdates": {
-        "$ref": "refs/components/schemas/AssetUpdates.json"
-      },
       "AssetWithInfoFields": {
         "$ref": "refs/components/schemas/AssetWithInfoFields.json"
       },
       "Chapter": {
         "$ref": "refs/components/schemas/Chapter.json"
-      },
-      "ChapterDefinition": {
-        "$ref": "refs/components/schemas/ChapterDefinition.json"
-      },
-      "ChapterDefinitions": {
-        "$ref": "refs/components/schemas/ChapterDefinitions.json"
       },
       "Chapters": {
         "$ref": "refs/components/schemas/Chapters.json"
