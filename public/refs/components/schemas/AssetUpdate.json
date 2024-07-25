@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The asset update id",
+      "example": "c40a88fc-189e-4bbf-8606-9c7b57030e21"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The asset update created at date",
+      "example": "2020-01-01T00:00:00.000Z"
+    },
+    "user": {
+      "$ref": "./User.json"
+    },
+    "reason_for_change": {
+      "type": "string",
+      "description": "The asset update reason for change",
+      "example": "Reason for change"
+    },
+    "action": {
+      "type": "string",
+      "description": "The asset update action",
+      "example": "uploaded_asset"
+    },
+    "action_text": {
+      "type": "string",
+      "description": "The asset update action text",
+      "example": "uploaded an asset"
+    },
+    "update_type": {
+      "type": "string",
+      "description": "The asset update type",
+      "example": "system_event"
+    },
+    "update_message": {
+      "type": "string",
+      "description": "The asset update message",
+      "example": "Message",
+      "nullable": true
+    },
+    "update_items": {
+      "type": "array",
+      "description": "The asset update items",
+      "items": {
+        "$ref": "./AssetUpdateItem.json"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "created_at",
+    "user",
+    "reason_for_change",
+    "action",
+    "action_text",
+    "update_type",
+    "update_items"
+  ]
+}

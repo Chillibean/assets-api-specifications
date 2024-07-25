@@ -1,0 +1,66 @@
+{
+  "description": "A procedure for an event",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "description": "The procedure id",
+      "example": 1,
+      "nullable": true
+    },
+    "date": {
+      "type": "string",
+      "description": "The date of the procedure",
+      "example": "2024-01-02",
+      "nullable": true
+    },
+    "display_name": {
+      "type": "string",
+      "description": "The display name of the procedure",
+      "example": "North Star"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "The identifier of the procedure",
+      "example": "NSTAR"
+    },
+    "protocol": {
+      "$ref": "./StudyProtocol.json"
+    },
+    "role_definitions": {
+      "type": "array",
+      "description": "The role definitions of the procedure",
+      "items": {
+        "$ref": "./RoleDefinitionWithContributors.json"
+      }
+    },
+    "locked": {
+      "type": "boolean",
+      "description": "where the study procedure is locked",
+      "example": false
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the procedure",
+      "example": "complete",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "complete",
+        "requires_attention",
+        "not_required"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "identifier",
+    "display_name",
+    "date",
+    "protocol",
+    "role_definitions",
+    "locked",
+    "status"
+  ],
+  "additionalProperties": false
+}

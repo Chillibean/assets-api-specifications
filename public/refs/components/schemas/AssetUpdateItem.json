@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "The asset update item id",
+      "example": 1
+    },
+    "item_type": {
+      "type": "string",
+      "description": "The asset update item type",
+      "example": "Asset"
+    },
+    "item_class": {
+      "type": "string",
+      "description": "The asset update item class",
+      "example": "Asset"
+    },
+    "display_text": {
+      "type": "string",
+      "description": "The asset update item display text",
+      "example": "Asset 1"
+    },
+    "display_date": {
+      "type": "string",
+      "description": "The asset update item display date",
+      "example": "2020-01-01T00:00:00.000Z",
+      "nullable": true
+    }
+  }
+}

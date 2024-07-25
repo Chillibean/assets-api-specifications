@@ -1,0 +1,174 @@
+{
+  "get": {
+    "summary": "Fetches chapters for an asset",
+    "description": "Fetches chapters for an asset",
+    "operationId": "getAssetChapters",
+    "tags": [
+      "Chapters"
+    ],
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "asset_id",
+        "in": "path",
+        "description": "The asset id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../components/schemas/Chapters.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  },
+  "post": {
+    "summary": "Updates chapters for an asset",
+    "description": "Updates chapters for an asset",
+    "operationId": "putAssetChapters",
+    "tags": [
+      "Chapters"
+    ],
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "trial_container_id",
+        "in": "path",
+        "description": "The trial container id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "asset_id",
+        "in": "path",
+        "description": "The asset id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "Asset chapters update parameters",
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "chapters": {
+                "$ref": "../components/schemas/Chapters.json"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../components/schemas/Chapters.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}
