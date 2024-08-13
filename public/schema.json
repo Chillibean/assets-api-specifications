@@ -66,12 +66,6 @@
       "Asset": {
         "$ref": "refs/components/schemas/Asset.json"
       },
-      "Assets": {
-        "$ref": "refs/components/schemas/Assets.json"
-      },
-      "AssetShort": {
-        "$ref": "refs/components/schemas/AssetShort.json"
-      },
       "AssetWithInfoFields": {
         "$ref": "refs/components/schemas/AssetWithInfoFields.json"
       },
@@ -81,38 +75,11 @@
       "Chapters": {
         "$ref": "refs/components/schemas/Chapters.json"
       },
-      "Contributor": {
-        "$ref": "refs/components/schemas/Contributor.json"
-      },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
       },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
-      },
-      "PluralDisplay": {
-        "$ref": "refs/components/schemas/PluralDisplay.json"
-      },
-      "Role": {
-        "$ref": "refs/components/schemas/Role.json"
-      },
-      "RoleDefinition": {
-        "$ref": "refs/components/schemas/RoleDefinition.json"
-      },
-      "RoleDefinitionWithContributors": {
-        "$ref": "refs/components/schemas/RoleDefinitionWithContributors.json"
-      },
-      "Schedule": {
-        "$ref": "refs/components/schemas/Schedule.json"
-      },
-      "StudyEvent": {
-        "$ref": "refs/components/schemas/StudyEvent.json"
-      },
-      "StudyProcedure": {
-        "$ref": "refs/components/schemas/StudyProcedure.json"
-      },
-      "StudyProtocol": {
-        "$ref": "refs/components/schemas/StudyProtocol.json"
       },
       "Thumbnails": {
         "$ref": "refs/components/schemas/Thumbnails.json"
