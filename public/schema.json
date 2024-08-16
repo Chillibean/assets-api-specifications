@@ -69,6 +69,12 @@
       "Asset": {
         "$ref": "refs/components/schemas/Asset.json"
       },
+      "Assets": {
+        "$ref": "refs/components/schemas/Assets.json"
+      },
+      "AssetShort": {
+        "$ref": "refs/components/schemas/AssetShort.json"
+      },
       "AssetWithInfoFields": {
         "$ref": "refs/components/schemas/AssetWithInfoFields.json"
       },

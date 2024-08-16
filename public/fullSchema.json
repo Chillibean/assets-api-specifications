@@ -796,6 +796,71 @@
           "processed"
         ]
       },
+      "Assets": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AssetShort"
+        }
+      },
+      "AssetShort": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The asset id",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "description": "The asset title",
+            "example": "Asset 1"
+          },
+          "media_type": {
+            "type": "string",
+            "description": "The asset media type",
+            "example": "video"
+          },
+          "thumbnails": {
+            "$ref": "#/components/schemas/Thumbnails"
+          },
+          "filename": {
+            "type": "string",
+            "description": "The asset filename",
+            "example": "asset_1.mp4"
+          },
+          "extension": {
+            "type": "string",
+            "description": "The asset extension",
+            "example": "mp4"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The asset update created at date",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "position": {
+            "type": "number",
+            "description": "The asset position",
+            "example": 1
+          },
+          "processed": {
+            "type": "boolean",
+            "description": "The asset processed status",
+            "example": true
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "media_type",
+          "thumbnails",
+          "filename",
+          "created_at",
+          "extension",
+          "processed"
+        ]
+      },
       "AssetWithInfoFields": {
         "type": "object",
         "properties": {
@@ -1118,71 +1183,6 @@
           "status",
           "frame_rate"
         ]
-      },
-      "AssetShort": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The asset id",
-            "example": 1
-          },
-          "title": {
-            "type": "string",
-            "description": "The asset title",
-            "example": "Asset 1"
-          },
-          "media_type": {
-            "type": "string",
-            "description": "The asset media type",
-            "example": "video"
-          },
-          "thumbnails": {
-            "$ref": "#/components/schemas/Thumbnails"
-          },
-          "filename": {
-            "type": "string",
-            "description": "The asset filename",
-            "example": "asset_1.mp4"
-          },
-          "extension": {
-            "type": "string",
-            "description": "The asset extension",
-            "example": "mp4"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "The asset update created at date",
-            "example": "2020-01-01T00:00:00.000Z"
-          },
-          "position": {
-            "type": "number",
-            "description": "The asset position",
-            "example": 1
-          },
-          "processed": {
-            "type": "boolean",
-            "description": "The asset processed status",
-            "example": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "title",
-          "media_type",
-          "thumbnails",
-          "filename",
-          "created_at",
-          "extension",
-          "processed"
-        ]
-      },
-      "Assets": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AssetShort"
-        }
       }
     },
     "responses": {
