@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "4.0.2",
+    "version": "5.0.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -34,9 +34,6 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
-      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
-    },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets.json"
     },
@@ -45,6 +42,9 @@
     },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
       "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets_update_positions.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}_chapters.json"
@@ -84,38 +84,11 @@
       "Chapters": {
         "$ref": "refs/components/schemas/Chapters.json"
       },
-      "Contributor": {
-        "$ref": "refs/components/schemas/Contributor.json"
-      },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
       },
       "InfoFields": {
         "$ref": "refs/components/schemas/InfoFields.json"
-      },
-      "PluralDisplay": {
-        "$ref": "refs/components/schemas/PluralDisplay.json"
-      },
-      "Role": {
-        "$ref": "refs/components/schemas/Role.json"
-      },
-      "RoleDefinition": {
-        "$ref": "refs/components/schemas/RoleDefinition.json"
-      },
-      "RoleDefinitionWithContributors": {
-        "$ref": "refs/components/schemas/RoleDefinitionWithContributors.json"
-      },
-      "Schedule": {
-        "$ref": "refs/components/schemas/Schedule.json"
-      },
-      "StudyEvent": {
-        "$ref": "refs/components/schemas/StudyEvent.json"
-      },
-      "StudyProcedure": {
-        "$ref": "refs/components/schemas/StudyProcedure.json"
-      },
-      "StudyProtocol": {
-        "$ref": "refs/components/schemas/StudyProtocol.json"
       },
       "Thumbnails": {
         "$ref": "refs/components/schemas/Thumbnails.json"
