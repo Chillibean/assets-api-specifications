@@ -1,0 +1,246 @@
+{
+  "get": {
+    "summary": "Fetches assets in a study procedure",
+    "description": "Fetches assets in a study procedure",
+    "operationId": "getStudyProcedureAssets",
+    "tags": [
+      "Study Procedure Assets"
+    ],
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "site_id",
+        "in": "path",
+        "description": "The site id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "subject_id",
+        "in": "path",
+        "description": "The subject id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "SUBJECT_ID"
+        }
+      },
+      {
+        "name": "study_event_id",
+        "in": "path",
+        "description": "The study event id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "STUDY_EVENT_ID"
+        }
+      },
+      {
+        "name": "study_procedure_id",
+        "in": "path",
+        "description": "The study procedure id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "STUDY_PROCEDURE_ID"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../components/schemas/Assets.json"
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  },
+  "post": {
+    "summary": "Creates an asset in a study procedure",
+    "description": "Creates an asset in a study procedure",
+    "operationId": "postStudyProcedureAsset",
+    "tags": [
+      "Study Procedure Assets"
+    ],
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "parameters": [
+      {
+        "name": "account_id",
+        "in": "path",
+        "description": "The account id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "site_id",
+        "in": "path",
+        "description": "The site id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1"
+        }
+      },
+      {
+        "name": "subject_id",
+        "in": "path",
+        "description": "The subject id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "SUBJECT_ID"
+        }
+      },
+      {
+        "name": "study_event_id",
+        "in": "path",
+        "description": "The study event id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "STUDY_EVENT_ID"
+        }
+      },
+      {
+        "name": "study_procedure_id",
+        "in": "path",
+        "description": "The study procedure id",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "STUDY_PROCEDURE_ID"
+        }
+      }
+    ],
+    "requestBody": {
+      "description": "Asset creation parameters",
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "filename": {
+                "type": "string",
+                "description": "The asset filename",
+                "example": "sample-vid.mp4"
+              },
+              "filesize": {
+                "type": "integer",
+                "description": "The asset filesize",
+                "example": 37512140
+              },
+              "mime_type": {
+                "type": "string",
+                "description": "The asset mime type",
+                "example": "video/mp4"
+              },
+              "s3_name": {
+                "type": "string",
+                "description": "The asset s3 name",
+                "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "asset": {
+                  "$ref": "../components/schemas/Asset.json"
+                },
+                "study_procedure": {
+                  "$ref": "../components/schemas/StudyProcedure.json"
+                },
+                "schedule": {
+                  "$ref": "../components/schemas/Schedule.json"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "asset"
+              ]
+            }
+          }
+        }
+      },
+      "400": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorised.json"
+      },
+      "403": {
+        "$ref": "../components/responses/Forbidden.json"
+      },
+      "404": {
+        "$ref": "../components/responses/NotFound.json"
+      },
+      "409": {
+        "$ref": "../components/responses/Conflict.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}
