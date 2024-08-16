@@ -34,9 +34,6 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
-      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
-    },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
       "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets.json"
     },
@@ -45,6 +42,9 @@
     },
     "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
       "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets_update_positions.json"
+    },
+    "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
+      "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}_chapters.json"
