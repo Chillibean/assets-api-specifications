@@ -1,16 +1,14 @@
 {
   "get": {
-    "summary": "Fetches chapters for an asset",
-    "description": "Fetches chapters for an asset",
+    "summary": "Get chapters for an asset",
+    "description": "Get chapters for an asset",
     "operationId": "getAssetChapters",
     "tags": [
-      "Chapters"
+      "Trial Container Asset Chapters"
     ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -52,7 +50,10 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/Chapters.json"
+              "type": "array",
+              "items": {
+                "$ref": "../components/schemas/Chapter.json"
+              }
             }
           }
         }
@@ -61,7 +62,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"
@@ -78,17 +79,15 @@
     }
   },
   "post": {
-    "summary": "Updates chapters for an asset",
-    "description": "Updates chapters for an asset",
-    "operationId": "putAssetChapters",
+    "summary": "Update chapters for an asset",
+    "description": "Update chapters for an asset",
+    "operationId": "updateAssetChapters",
     "tags": [
-      "Chapters"
+      "Trial Container Asset Chapters"
     ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -125,7 +124,6 @@
       }
     ],
     "requestBody": {
-      "description": "Asset chapters update parameters",
       "required": true,
       "content": {
         "application/json": {
@@ -133,7 +131,10 @@
             "type": "object",
             "properties": {
               "chapters": {
-                "$ref": "../components/schemas/Chapters.json"
+                "type": "array",
+                "items": {
+                  "$ref": "../components/schemas/Chapter.json"
+                }
               }
             }
           }
@@ -146,7 +147,10 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/Chapters.json"
+              "type": "array",
+              "items": {
+                "$ref": "../components/schemas/Chapter.json"
+              }
             }
           }
         }
@@ -155,7 +159,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"

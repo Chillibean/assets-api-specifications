@@ -1,16 +1,14 @@
 {
   "get": {
-    "summary": "Fetches an asset in a trial container",
-    "description": "Fetches an asset in a trial container",
+    "summary": "Get an asset in a trial container",
+    "description": "Get an asset in a trial container",
     "operationId": "getAsset",
     "tags": [
       "Trial Container Assets"
     ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -61,7 +59,7 @@
         "$ref": "../components/responses/BadRequest.json"
       },
       "401": {
-        "$ref": "../components/responses/Unauthorised.json"
+        "$ref": "../components/responses/Unauthorized.json"
       },
       "403": {
         "$ref": "../components/responses/Forbidden.json"

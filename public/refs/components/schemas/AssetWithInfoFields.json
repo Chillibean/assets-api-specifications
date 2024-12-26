@@ -93,7 +93,10 @@
       "example": "123"
     },
     "chapters": {
-      "$ref": "./Chapters.json"
+      "type": "array",
+      "items": {
+        "$ref": "./Chapter.json"
+      }
     },
     "position": {
       "type": "number",

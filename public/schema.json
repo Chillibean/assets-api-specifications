@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "5.0.0",
+    "version": "6.0.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -11,12 +11,8 @@
   },
   "tags": [
     {
-      "name": "Chapters",
+      "name": "Trial Container Asset Chapters",
       "description": "Endpoints for Asset chapters"
-    },
-    {
-      "name": "Study Procedure Assets",
-      "description": "Endpoints for Study Procedure Assets"
     },
     {
       "name": "Trial Container Assets",
@@ -34,15 +30,6 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
-      "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets.json"
-    },
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{asset_id}": {
-      "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets_{asset_id}.json"
-    },
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
-      "$ref": "refs/paths/accounts_{account_id}_sites_{site_id}_subjects_{subject_id}_study_events_{study_event_id}_study_procedures_{study_procedure_id}_assets_update_positions.json"
-    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "$ref": "refs/paths/accounts_{account_id}_trial_containers_{trial_container_id}_assets_{asset_id}.json"
     },
@@ -66,23 +53,11 @@
       }
     },
     "schemas": {
-      "Asset": {
-        "$ref": "refs/components/schemas/Asset.json"
-      },
-      "Assets": {
-        "$ref": "refs/components/schemas/Assets.json"
-      },
-      "AssetShort": {
-        "$ref": "refs/components/schemas/AssetShort.json"
-      },
       "AssetWithInfoFields": {
         "$ref": "refs/components/schemas/AssetWithInfoFields.json"
       },
       "Chapter": {
         "$ref": "refs/components/schemas/Chapter.json"
-      },
-      "Chapters": {
-        "$ref": "refs/components/schemas/Chapters.json"
       },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"

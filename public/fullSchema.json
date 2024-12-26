@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "5.0.0",
+    "version": "6.0.0",
     "title": "Assets API",
     "description": "API used to generate Assets",
     "contact": {
@@ -21,12 +21,8 @@
   ],
   "tags": [
     {
-      "name": "Chapters",
+      "name": "Trial Container Asset Chapters",
       "description": "Endpoints for Asset chapters"
-    },
-    {
-      "name": "Study Procedure Assets",
-      "description": "Endpoints for Study Procedure Assets"
     },
     {
       "name": "Trial Container Assets",
@@ -34,391 +30,17 @@
     }
   ],
   "paths": {
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets": {
-      "get": {
-        "summary": "Fetches assets in a study procedure",
-        "description": "Fetches assets in a study procedure",
-        "operationId": "getStudyProcedureAssets",
-        "tags": [
-          "Study Procedure Assets"
-        ],
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "site_id",
-            "in": "path",
-            "description": "The site id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "subject_id",
-            "in": "path",
-            "description": "The subject id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "SUBJECT_ID"
-            }
-          },
-          {
-            "name": "study_event_id",
-            "in": "path",
-            "description": "The study event id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_EVENT_ID"
-            }
-          },
-          {
-            "name": "study_procedure_id",
-            "in": "path",
-            "description": "The study procedure id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_PROCEDURE_ID"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Assets"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorised"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/{asset_id}": {
-      "put": {
-        "summary": "Updates an asset in a study procedure",
-        "description": "Updates an asset in a study procedure",
-        "operationId": "putStudyProcedureAsset",
-        "tags": [
-          "Study Procedure Assets"
-        ],
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "site_id",
-            "in": "path",
-            "description": "The site id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "subject_id",
-            "in": "path",
-            "description": "The subject id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "SUBJECT_ID"
-            }
-          },
-          {
-            "name": "study_event_id",
-            "in": "path",
-            "description": "The study event id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_EVENT_ID"
-            }
-          },
-          {
-            "name": "study_procedure_id",
-            "in": "path",
-            "description": "The study procedure id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_PROCEDURE_ID"
-            }
-          },
-          {
-            "name": "asset_id",
-            "in": "path",
-            "description": "The asset id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Asset update parameters",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "filename": {
-                    "type": "string",
-                    "description": "The asset filename",
-                    "example": "sample-vid.mp4"
-                  },
-                  "filesize": {
-                    "type": "integer",
-                    "description": "The asset filesize",
-                    "example": 37512140
-                  },
-                  "mime_type": {
-                    "type": "string",
-                    "description": "The asset mime type",
-                    "example": "video/mp4"
-                  },
-                  "s3_name": {
-                    "type": "string",
-                    "description": "The asset s3 name",
-                    "example": "2/5f42f51e-ad11-4b8d-8e16-5f0bd3f081a4/d2a942f1-29f5-4320-8e6e-e92508b3b372.mp4"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Asset"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorised"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
-    "/accounts/{account_id}/sites/{site_id}/subjects/{subject_id}/study_events/{study_event_id}/study_procedures/{study_procedure_id}/assets/update_positions": {
-      "post": {
-        "summary": "Reorders the assets in a study procedure",
-        "description": "Reorders the assets in a study procedure",
-        "operationId": "postReorderStudyProcedureAssets",
-        "tags": [
-          "Study Procedure Assets"
-        ],
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "account_id",
-            "in": "path",
-            "description": "The account id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "site_id",
-            "in": "path",
-            "description": "The site id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          },
-          {
-            "name": "subject_id",
-            "in": "path",
-            "description": "The subject id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "SUBJECT_ID"
-            }
-          },
-          {
-            "name": "study_event_id",
-            "in": "path",
-            "description": "The study event id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_EVENT_ID"
-            }
-          },
-          {
-            "name": "study_procedure_id",
-            "in": "path",
-            "description": "The study procedure id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "STUDY_PROCEDURE_ID"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Asset position parameters",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "description": "The asset id",
-                      "example": 1
-                    },
-                    "position": {
-                      "type": "integer",
-                      "description": "The asset position",
-                      "example": 1
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Asset"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorised"
-          },
-          "403": {
-            "$ref": "#/components/responses/Forbidden"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
-    },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}": {
       "get": {
-        "summary": "Fetches an asset in a trial container",
-        "description": "Fetches an asset in a trial container",
+        "summary": "Get an asset in a trial container",
+        "description": "Get an asset in a trial container",
         "operationId": "getAsset",
         "tags": [
           "Trial Container Assets"
         ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -469,7 +91,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -488,17 +110,15 @@
     },
     "/accounts/{account_id}/trial_containers/{trial_container_id}/assets/{asset_id}/chapters": {
       "get": {
-        "summary": "Fetches chapters for an asset",
-        "description": "Fetches chapters for an asset",
+        "summary": "Get chapters for an asset",
+        "description": "Get chapters for an asset",
         "operationId": "getAssetChapters",
         "tags": [
-          "Chapters"
+          "Trial Container Asset Chapters"
         ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -540,7 +160,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Chapters"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chapter"
+                  }
                 }
               }
             }
@@ -549,7 +172,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -566,17 +189,15 @@
         }
       },
       "post": {
-        "summary": "Updates chapters for an asset",
-        "description": "Updates chapters for an asset",
-        "operationId": "putAssetChapters",
+        "summary": "Update chapters for an asset",
+        "description": "Update chapters for an asset",
+        "operationId": "updateAssetChapters",
         "tags": [
-          "Chapters"
+          "Trial Container Asset Chapters"
         ],
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -613,7 +234,6 @@
           }
         ],
         "requestBody": {
-          "description": "Asset chapters update parameters",
           "required": true,
           "content": {
             "application/json": {
@@ -621,7 +241,10 @@
                 "type": "object",
                 "properties": {
                   "chapters": {
-                    "$ref": "#/components/schemas/Chapters"
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Chapter"
+                    }
                   }
                 }
               }
@@ -634,7 +257,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Chapters"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Chapter"
+                  }
                 }
               }
             }
@@ -643,7 +269,7 @@
             "$ref": "#/components/responses/BadRequest"
           },
           "401": {
-            "$ref": "#/components/responses/Unauthorised"
+            "$ref": "#/components/responses/Unauthorized"
           },
           "403": {
             "$ref": "#/components/responses/Forbidden"
@@ -677,190 +303,6 @@
       }
     },
     "schemas": {
-      "Asset": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The asset id",
-            "example": 1
-          },
-          "title": {
-            "type": "string",
-            "description": "The asset title",
-            "example": "Asset 1"
-          },
-          "filename": {
-            "type": "string",
-            "description": "The asset filename",
-            "example": "asset_1.mp4"
-          },
-          "extension": {
-            "type": "string",
-            "description": "The asset extension",
-            "example": "mp4"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "The asset created at date",
-            "example": "2020-01-01T00:00:00.000Z"
-          },
-          "created_by": {
-            "$ref": "#/components/schemas/User"
-          },
-          "media_type": {
-            "type": "string",
-            "description": "The asset media type",
-            "example": "video"
-          },
-          "media": {
-            "oneOf": [
-              {
-                "type": "object",
-                "description": "The links to the asset media",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "The asset media url",
-                    "nullable": true,
-                    "example": "https://eu-west-4-chillipharm-bucket.s3.eu-west-4.amazonaws.com/test_data/Image.png"
-                  }
-                },
-                "additionalProperties": false,
-                "required": [
-                  "url"
-                ]
-              },
-              {
-                "type": "object",
-                "description": "The links to the asset media",
-                "properties": {
-                  "sd_video": {
-                    "$ref": "#/components/schemas/Video"
-                  },
-                  "hd_video": {
-                    "$ref": "#/components/schemas/Video"
-                  }
-                },
-                "additionalProperties": false,
-                "required": [
-                  "sd_video",
-                  "hd_video"
-                ]
-              }
-            ]
-          },
-          "thumbnails": {
-            "$ref": "#/components/schemas/Thumbnails"
-          },
-          "study_procedure_identifier": {
-            "type": "string",
-            "description": "The asset study procedure identifier",
-            "example": "PROCEDURE"
-          },
-          "study_event_identifier": {
-            "type": "string",
-            "description": "The asset study event identifier",
-            "example": "EVENT"
-          },
-          "subject_number": {
-            "type": "string",
-            "description": "The asset subject number",
-            "example": "123"
-          },
-          "chapters": {
-            "$ref": "#/components/schemas/Chapters"
-          },
-          "position": {
-            "type": "number",
-            "description": "The position of asset",
-            "example": 1
-          },
-          "processed": {
-            "type": "boolean",
-            "description": "The asset processed status",
-            "example": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "title",
-          "filename",
-          "extension",
-          "created_at",
-          "created_by",
-          "media_type",
-          "media",
-          "thumbnails",
-          "processed"
-        ]
-      },
-      "Assets": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AssetShort"
-        }
-      },
-      "AssetShort": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "The asset id",
-            "example": 1
-          },
-          "title": {
-            "type": "string",
-            "description": "The asset title",
-            "example": "Asset 1"
-          },
-          "media_type": {
-            "type": "string",
-            "description": "The asset media type",
-            "example": "video"
-          },
-          "thumbnails": {
-            "$ref": "#/components/schemas/Thumbnails"
-          },
-          "filename": {
-            "type": "string",
-            "description": "The asset filename",
-            "example": "asset_1.mp4"
-          },
-          "extension": {
-            "type": "string",
-            "description": "The asset extension",
-            "example": "mp4"
-          },
-          "created_at": {
-            "type": "string",
-            "description": "The asset update created at date",
-            "example": "2020-01-01T00:00:00.000Z"
-          },
-          "position": {
-            "type": "number",
-            "description": "The asset position",
-            "example": 1
-          },
-          "processed": {
-            "type": "boolean",
-            "description": "The asset processed status",
-            "example": true
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "title",
-          "media_type",
-          "thumbnails",
-          "filename",
-          "created_at",
-          "extension",
-          "processed"
-        ]
-      },
       "AssetWithInfoFields": {
         "type": "object",
         "properties": {
@@ -956,7 +398,10 @@
             "example": "123"
           },
           "chapters": {
-            "$ref": "#/components/schemas/Chapters"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Chapter"
+            }
           },
           "position": {
             "type": "number",
@@ -1027,12 +472,6 @@
           "start_time",
           "end_time"
         ]
-      },
-      "Chapters": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Chapter"
-        }
       },
       "Error": {
         "description": "An error",
@@ -1196,8 +635,8 @@
           }
         }
       },
-      "Unauthorised": {
-        "description": "Unauthorised. Missing or invalid authentication credentials.",
+      "Unauthorized": {
+        "description": "Unauthorized. Missing or invalid authentication credentials.",
         "content": {
           "application/json": {
             "schema": {
